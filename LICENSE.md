@@ -1,2 +1,2 @@
 
-Copyright (C) 2019 Adrián
+Copyright (C) 2019 Adrián Estévez Gayoso
