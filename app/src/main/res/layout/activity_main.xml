@@ -17,14 +17,16 @@
         <TextView
             android:id="@+id/TextViewInfo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="38dp"
+            android:gravity="center"
             android:text="Seleccione un empleado"
+            android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <ListView
             android:id="@+id/ListViewEmployees"
             android:layout_width="match_parent"
-            android:layout_height="630dp" />
+            android:layout_height="406dp" />
 
         <Button
             android:id="@+id/BtnExit"
