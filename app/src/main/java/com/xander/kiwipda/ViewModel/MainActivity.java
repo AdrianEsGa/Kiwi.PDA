@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.xander.kiwipda.Database;
 import com.xander.kiwipda.GlobalApp;
 import com.xander.kiwipda.Model.Entities.Employee;
 import com.xander.kiwipda.Model.Repositories.EmployeesRepository;
@@ -26,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Database.SQLServer.Connect();
+
         LoadListViewEmployees();
     }
 

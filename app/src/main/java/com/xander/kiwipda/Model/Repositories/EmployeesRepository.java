@@ -1,7 +1,11 @@
 package com.xander.kiwipda.Model.Repositories;
 
+import com.xander.kiwipda.Database;
 import com.xander.kiwipda.Model.Entities.Employee;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,15 +16,21 @@ public class EmployeesRepository {
     public List<Employee> GetAllActive(){
 
         List<Employee> employees = new ArrayList<Employee>();
+        Statement command;
+        try {
 
-        Employee employee1 = new Employee(1, "Adrián Estévez");
-        Employee employee2 = new Employee(2, "Juan de los palotes");
-        Employee employee3 = new Employee(3, "Pepe y Juan");
+            command = Database.SQLServer.Connect().createStatement();
+            String strSQL = "Select IdEmpleados, Nombre From Empleados";
+            ResultSet reader = command.executeQuery(strSQL);
 
-        employees.add(employee1);
-        employees.add(employee2);
-        employees.add(employee3);
+            while (reader.next()) {
+                Employee employee = new Employee(reader.getInt("IdEmpleados"), reader.getString("Nombre"));
+                employees.add(employee);
+            }
 
+        } catch (SQLException e) {
+
+        }
         return employees;
     }
 
