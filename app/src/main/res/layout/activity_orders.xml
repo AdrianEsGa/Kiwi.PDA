@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewModel.TablesActivity">
+    tools:context=".ViewModel.OrdersActivity">
 
     <LinearLayout
         android:id="@+id/PanelContent"
@@ -25,10 +24,10 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btnBackToEmployeesView"
+                    android:id="@+id/btnBackToTablesView"
                     android:layout_width="wrap_content"
                     android:layout_height="71dp"
-                    android:onClick="btnBackToEmployeesView_Click"
+                    android:onClick="btnBackToTablesView_Click"
                     android:text="Atrás" />
 
                 <TextView
@@ -50,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Seleccione una mesa" />
+                android:text="Seleccione o realice un nuevo pedido" />
         </FrameLayout>
 
         <FrameLayout
@@ -58,13 +57,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ListView
-                android:id="@+id/ListViewTables"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ListView
+                    android:id="@+id/ListViewOrders"
+                    android:layout_width="match_parent"
+                    android:layout_height="316dp" />
+
+                <Button
+                    android:id="@+id/BtnNewOrder"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Nuevo Pedido" />
+            </LinearLayout>
+
         </FrameLayout>
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

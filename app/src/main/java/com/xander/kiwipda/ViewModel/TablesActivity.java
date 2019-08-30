@@ -16,6 +16,7 @@ import com.xander.kiwipda.GlobalApp;
 import com.xander.kiwipda.Model.Entities.Employee;
 import com.xander.kiwipda.Model.Entities.Table;
 import com.xander.kiwipda.Model.Repositories.EmployeesRepository;
+import com.xander.kiwipda.Model.Repositories.OrdersRepository;
 import com.xander.kiwipda.Model.Repositories.TablesRepository;
 import com.xander.kiwipda.R;
 
@@ -55,7 +56,8 @@ public class TablesActivity extends AppCompatActivity {
     }
 
     private void OpenOrdersActivity(){
-
+        Intent myIntent = new Intent(this, OrdersActivity.class);
+        this.startActivity(myIntent);
     }
 
     public void btnBackToEmployeesView_Click(View target) {
@@ -66,6 +68,5 @@ public class TablesActivity extends AppCompatActivity {
     private void SetViewInfo(){
         TextView textViewEmployee = findViewById(R.id.TextViewEmployee);
         textViewEmployee.setText(GlobalApp.Business.SelectedEmployee.Name());
-
     }
 }

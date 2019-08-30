@@ -1,7 +1,7 @@
 package com.xander.kiwipda.Model.Repositories;
 
 import com.xander.kiwipda.Database;
-import com.xander.kiwipda.Model.Entities.Table;
+import com.xander.kiwipda.Model.Entities.Order;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,28 +9,28 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TablesRepository {
+public class OrdersRepository {
 
-    public TablesRepository(){}
+    public OrdersRepository(){}
 
-    public List<Table> GetAllActive(){
+    public List<Order> GetAllActive(){
 
-        List<Table> tables = new ArrayList<Table>();
+        List<Order> orders = new ArrayList<Order>();
         Statement command;
         try {
 
             command = Database.SQLServer.Connect().createStatement();
-            String strSQL = "Select IdAlmacenes, Nombre From Almacenes";
+            String strSQL = "Select top 5 IdVehiculos From Vehiculos";
             ResultSet reader = command.executeQuery(strSQL);
 
             while (reader.next()) {
-                Table table = new Table(reader.getInt("IdAlmacenes"), reader.getString("Nombre"));
-                tables.add(table);
+                Order order = new Order(reader.getInt("IdVehiculos"));
+                orders.add(order);
             }
 
         } catch (SQLException e) {
 
         }
-        return tables;
+        return orders;
     }
 }
