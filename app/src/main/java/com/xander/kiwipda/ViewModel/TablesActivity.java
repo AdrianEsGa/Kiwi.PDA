@@ -19,7 +19,9 @@ import com.xander.kiwipda.Model.Repositories.EmployeesRepository;
 import com.xander.kiwipda.Model.Repositories.OrdersRepository;
 import com.xander.kiwipda.Model.Repositories.TablesRepository;
 import com.xander.kiwipda.R;
+import com.xander.kiwipda.ViewModel.Adapters.TableAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TablesActivity extends AppCompatActivity {
@@ -36,13 +38,9 @@ public class TablesActivity extends AppCompatActivity {
 
     private void LoadListViewTables() {
 
-        List<Table> tables = tablesRepository.GetAllActive();
-
+        ArrayList<Table> tables = tablesRepository.GetAllActive();
         ListView listViewTables = findViewById(R.id.ListViewTables);
-
-        ArrayAdapter<Table> arrayAdapter = new ArrayAdapter<Table>
-                (this, android.R.layout.simple_list_item_1, tables);
-
+        TableAdapter arrayAdapter = new TableAdapter(this, tables);
         listViewTables.setAdapter(arrayAdapter);
 
         listViewTables.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -67,6 +65,6 @@ public class TablesActivity extends AppCompatActivity {
 
     private void SetViewInfo(){
         TextView textViewEmployee = findViewById(R.id.TextViewEmployee);
-        textViewEmployee.setText(GlobalApp.Business.SelectedEmployee.Name());
+        textViewEmployee.setText(GlobalApp.Business.SelectedEmployee.GetName());
     }
 }

@@ -2,6 +2,7 @@ package com.xander.kiwipda.Model.Repositories;
 
 import com.xander.kiwipda.Database;
 import com.xander.kiwipda.Model.Entities.Employee;
+import com.xander.kiwipda.R;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,9 +14,9 @@ public class EmployeesRepository {
 
     public EmployeesRepository(){}
 
-    public List<Employee> GetAllActive(){
+    public ArrayList<Employee> GetAllActive(){
 
-        List<Employee> employees = new ArrayList<Employee>();
+        ArrayList<Employee> employees = new ArrayList<Employee>();
         Statement command;
         try {
 
@@ -24,7 +25,7 @@ public class EmployeesRepository {
             ResultSet reader = command.executeQuery(strSQL);
 
             while (reader.next()) {
-                Employee employee = new Employee(reader.getInt("IdEmpleados"), reader.getString("Nombre"));
+                Employee employee = new Employee(reader.getInt("IdEmpleados"), reader.getString("Nombre"), "Camarero",  null);
                 employees.add(employee);
             }
 

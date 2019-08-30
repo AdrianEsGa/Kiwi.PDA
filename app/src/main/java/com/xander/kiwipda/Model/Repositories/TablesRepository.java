@@ -13,9 +13,9 @@ public class TablesRepository {
 
     public TablesRepository(){}
 
-    public List<Table> GetAllActive(){
+    public ArrayList<Table> GetAllActive(){
 
-        List<Table> tables = new ArrayList<Table>();
+        ArrayList<Table> tables = new ArrayList<Table>();
         Statement command;
         try {
 
@@ -24,7 +24,7 @@ public class TablesRepository {
             ResultSet reader = command.executeQuery(strSQL);
 
             while (reader.next()) {
-                Table table = new Table(reader.getInt("IdAlmacenes"), reader.getString("Nombre"));
+                Table table = new Table(reader.getInt("IdAlmacenes"), reader.getString("Nombre"), "Soy una mesa",null);
                 tables.add(table);
             }
 

@@ -63,6 +63,6 @@ public class OrdersActivity extends AppCompatActivity {
 
     private void SetViewInfo(){
         TextView textViewEmployee = findViewById(R.id.TextViewEmployee);
-        textViewEmployee.setText(GlobalApp.Business.SelectedEmployee.Name() + " / " + GlobalApp.Business.SelectedTable.Name());
+        textViewEmployee.setText(GlobalApp.Business.SelectedEmployee.GetName() + " / " + GlobalApp.Business.SelectedTable.GetName());
     }
 }
