@@ -9,7 +9,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.xander.kiwipda.Model.Entities.Employee;
 import com.xander.kiwipda.Model.Entities.Table;
 import com.xander.kiwipda.R;
 
