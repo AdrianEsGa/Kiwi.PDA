@@ -21,11 +21,11 @@ public class EmployeesRepository {
         try {
 
             command = Database.SQLServer.Connect().createStatement();
-            String strSQL = "Select IdEmpleados, Nombre From Empleados";
+            String strSQL = "Select Id, Name From Employees";
             ResultSet reader = command.executeQuery(strSQL);
 
             while (reader.next()) {
-                Employee employee = new Employee(reader.getInt("IdEmpleados"), reader.getString("Nombre"), "Camarero",  null);
+                Employee employee = new Employee(reader.getInt("Id"), reader.getString("Name"), "Camarero",  null);
                 employees.add(employee);
             }
 
