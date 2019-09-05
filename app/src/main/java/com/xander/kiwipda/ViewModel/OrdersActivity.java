@@ -11,10 +11,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xander.kiwipda.GlobalApp;
-import com.xander.kiwipda.Model.Entities.Order;
-import com.xander.kiwipda.Model.Entities.Table;
+import com.xander.kiwipda.Model.Entities.Command;
 import com.xander.kiwipda.Model.Repositories.OrdersRepository;
-import com.xander.kiwipda.Model.Repositories.TablesRepository;
 import com.xander.kiwipda.R;
 
 import java.util.List;
@@ -31,19 +29,14 @@ public class OrdersActivity extends AppCompatActivity {
         LoadListViewOrders();
     }
 
-    public void btnBackToTablesView_Click(View target) {
-        Intent myIntent = new Intent(this, TablesActivity.class);
-        this.startActivity(myIntent);
-    }
-
     private void LoadListViewOrders() {
 
-        List<Order> orders = ordersRepository.GetAllActive();
+        List<Command> commands = ordersRepository.GetAllActive();
 
         ListView listViewOrders = findViewById(R.id.ListViewOrders);
 
-        ArrayAdapter<Order> arrayAdapter = new ArrayAdapter<Order>
-                (this, android.R.layout.simple_list_item_1, orders);
+        ArrayAdapter<Command> arrayAdapter = new ArrayAdapter<Command>
+                (this, android.R.layout.simple_list_item_1, commands);
 
         listViewOrders.setAdapter(arrayAdapter);
 
@@ -51,7 +44,7 @@ public class OrdersActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position,
                                     long arg3) {
-                GlobalApp.Business.SelectedOrder = (Order) adapter.getItemAtPosition(position);
+                GlobalApp.Business.selectedCommand = (Command) adapter.getItemAtPosition(position);
                 OpenOrderDetailActivity();
             }
         });
@@ -59,6 +52,11 @@ public class OrdersActivity extends AppCompatActivity {
 
     private void OpenOrderDetailActivity(){
 
+    }
+
+    public void btnBackToTablesView_Click(View target) {
+        Intent myIntent = new Intent(this, TablesActivity.class);
+        this.startActivity(myIntent);
     }
 
     private void SetViewInfo(){

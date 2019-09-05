@@ -11,15 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewModel.OrdersActivity" />
-        <activity android:name=".ViewModel.TablesActivity" />
         <activity android:name=".ViewModel.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ViewModel.EmployeesActivity"/>
+        <activity android:name=".ViewModel.TablesActivity" />
+        <activity android:name=".ViewModel.OrdersActivity" />
     </application>
 
 </manifest>

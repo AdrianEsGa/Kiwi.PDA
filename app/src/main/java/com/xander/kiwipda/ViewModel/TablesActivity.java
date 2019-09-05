@@ -2,31 +2,20 @@ package com.xander.kiwipda.ViewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xander.kiwipda.GlobalApp;
-import com.xander.kiwipda.Model.Entities.Employee;
 import com.xander.kiwipda.Model.Entities.Table;
-import com.xander.kiwipda.Model.Repositories.EmployeesRepository;
-import com.xander.kiwipda.Model.Repositories.OrdersRepository;
 import com.xander.kiwipda.Model.Repositories.TablesRepository;
 import com.xander.kiwipda.R;
 import com.xander.kiwipda.ViewModel.Adapters.TableAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TablesActivity extends AppCompatActivity {
-
-    private TablesRepository tablesRepository = new TablesRepository();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +27,8 @@ public class TablesActivity extends AppCompatActivity {
 
     private void LoadListViewTables() {
 
-        ArrayList<Table> tables = tablesRepository.GetAllActive();
         ListView listViewTables = findViewById(R.id.ListViewTables);
-        TableAdapter arrayAdapter = new TableAdapter(this, tables);
+        TableAdapter arrayAdapter = new TableAdapter(this, GlobalApp.Business.Tables);
         listViewTables.setAdapter(arrayAdapter);
 
         listViewTables.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -59,7 +47,7 @@ public class TablesActivity extends AppCompatActivity {
     }
 
     public void btnBackToEmployeesView_Click(View target) {
-        Intent myIntent = new Intent(this, MainActivity.class);
+        Intent myIntent = new Intent(this, EmployeesActivity.class);
         this.startActivity(myIntent);
     }
 

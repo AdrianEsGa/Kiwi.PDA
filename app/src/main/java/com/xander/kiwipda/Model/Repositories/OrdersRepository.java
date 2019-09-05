@@ -1,7 +1,7 @@
 package com.xander.kiwipda.Model.Repositories;
 
 import com.xander.kiwipda.Database;
-import com.xander.kiwipda.Model.Entities.Order;
+import com.xander.kiwipda.Model.Entities.Command;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,24 +13,24 @@ public class OrdersRepository {
 
     public OrdersRepository(){}
 
-    public List<Order> GetAllActive(){
+    public List<Command> GetAllActive(){
 
-        List<Order> orders = new ArrayList<Order>();
-        Statement command;
+        List<Command> commands = new ArrayList<Command>();
+        Statement commandSql;
         try {
 
-            command = Database.SQLServer.Connect().createStatement();
+            commandSql = Database.SQLServer.Connect().createStatement();
             String strSQL = "Select top 5 IdVehiculos From Vehiculos";
-            ResultSet reader = command.executeQuery(strSQL);
+            ResultSet reader = commandSql.executeQuery(strSQL);
 
             while (reader.next()) {
-                Order order = new Order(reader.getInt("IdVehiculos"));
-                orders.add(order);
+                Command order = new Command(reader.getInt("IdVehiculos"),1,1,null, 1);
+                commands.add(order);
             }
 
         } catch (SQLException e) {
 
         }
-        return orders;
+        return commands;
     }
 }
