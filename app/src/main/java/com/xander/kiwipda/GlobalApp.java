@@ -18,7 +18,7 @@ public class GlobalApp {
 
         public static Employee SelectedEmployee;
         public static Table SelectedTable;
-        public static Command selectedCommand;
+        public static Command SelectedCommand;
     }
 
     public static class Messages {

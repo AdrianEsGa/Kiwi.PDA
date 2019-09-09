@@ -28,6 +28,10 @@ public class Table {
         return _image;
     }
 
+    public void SetImage(Drawable image){
+         _image = image;
+    }
+
     public String toString(){
         return _name;
     }

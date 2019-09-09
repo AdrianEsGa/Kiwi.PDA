@@ -6,19 +6,25 @@
     android:background="@android:color/background_light">
 
     <TextView
-        android:id="@+id/texto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/category"
+        android:id="@+id/TextViewEmployeeDescription"
+        android:layout_width="175dp"
+        android:layout_height="33dp"
+        android:layout_below="@+id/TextViewEmployeeName"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="4dp"
         android:layout_toEndOf="@+id/ImageViewEmployee"
         android:layout_toRightOf="@+id/ImageViewEmployee"
         android:text="Descripción" />
 
     <TextView
-        android:id="@+id/category"
-        android:layout_width="wrap_content"
+        android:id="@+id/TextViewEmployeeName"
+        android:layout_width="95dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_marginStart="23dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/ImageViewEmployee"
         android:layout_toRightOf="@+id/ImageViewEmployee"
         android:text="Nombre"
@@ -28,14 +34,14 @@
 
     <ImageView
         android:id="@+id/ImageViewEmployee"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/texto"
+        android:layout_width="74dp"
+        android:layout_height="65dp"
+        android:layout_alignBottom="@+id/TextViewCommandDescription"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="2dp"
         android:layout_marginRight="4dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="5dp"
         android:adjustViewBounds="true"
         android:cropToPadding="false"
         android:maxWidth="74dp"

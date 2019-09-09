@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewModel.TablesActivity">
+    tools:context=".ViewModel.CommandsActivity">
 
     <LinearLayout
         android:id="@+id/PanelContent"
@@ -15,10 +14,10 @@
         tools:layout_editor_absoluteY="194dp">
 
         <Button
-            android:id="@+id/btnBackToEmployeesView"
+            android:id="@+id/btnBackToTablesView"
             android:layout_width="match_parent"
             android:layout_height="64dp"
-            android:onClick="btnBackToEmployeesView_Click"
+            android:onClick="btnBackToTablesView_Click"
             android:text="Atrás" />
 
         <TextView
@@ -29,11 +28,10 @@
             android:text="TextView" />
 
         <ListView
-            android:id="@+id/ListViewTables"
+            android:id="@+id/ListViewCommands"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

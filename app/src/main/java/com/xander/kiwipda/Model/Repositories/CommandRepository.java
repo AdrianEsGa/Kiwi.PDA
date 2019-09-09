@@ -9,22 +9,24 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrdersRepository {
+public class CommandRepository {
 
-    public OrdersRepository(){}
+    public CommandRepository(){}
 
-    public List<Command> GetAllActive(){
+    public ArrayList<Command> GetAllActive(){
 
-        List<Command> commands = new ArrayList<Command>();
+        ArrayList<Command> commands = new ArrayList<Command>();
         Statement commandSql;
         try {
 
             commandSql = Database.SQLServer.Connect().createStatement();
-            String strSQL = "Select top 5 IdVehiculos From Vehiculos";
+            String strSQL = "SELECT Id, EmployeeId, BarTableId, StationId, Date, Status FROM Commands";
             ResultSet reader = commandSql.executeQuery(strSQL);
 
             while (reader.next()) {
-                Command order = new Command(reader.getInt("IdVehiculos"),1,1,null, 1);
+                Command order = new Command(reader.getInt("Id"),reader.getInt("EmployeeId"),
+                                            reader.getInt("BarTableId"),reader.getInt("StationId"),
+                                            reader.getDate("Date"), reader.getInt("Status"));
                 commands.add(order);
             }
 

@@ -9,17 +9,17 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.xander.kiwipda.Model.Entities.Employee;
+import com.xander.kiwipda.Model.Entities.Command;
 import com.xander.kiwipda.R;
 
 import java.util.ArrayList;
 
-public class EmployeeAdapter extends BaseAdapter {
+public class CommandAdapter extends BaseAdapter {
 
     protected Activity activity;
-    protected ArrayList<Employee> items;
+    protected ArrayList<Command> items;
 
-    public EmployeeAdapter (Activity activity, ArrayList<Employee> items) {
+    public CommandAdapter(Activity activity, ArrayList<Command> items) {
         this.activity = activity;
         this.items = items;
     }
@@ -33,9 +33,9 @@ public class EmployeeAdapter extends BaseAdapter {
         items.clear();
     }
 
-    public void addAll(ArrayList<Employee> employee) {
-        for (int i = 0; i < employee.size(); i++) {
-            items.add(employee.get(i));
+    public void addAll(ArrayList<Command> command) {
+        for (int i = 0; i < command.size(); i++) {
+            items.add(command.get(i));
         }
     }
 
@@ -56,19 +56,19 @@ public class EmployeeAdapter extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater inf = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inf.inflate(R.layout.listviewitem_employee, null);
+            view = inf.inflate(R.layout.listviewitem_command, null);
         }
 
-        Employee employee = items.get(position);
+        Command command = items.get(position);
 
-        TextView title = view.findViewById(R.id.TextViewEmployeeName);
-        title.setText(employee.GetName());
+        TextView title = view.findViewById(R.id.TextViewCommandName);
+        title.setText(command.GetName());
 
-        TextView description = view.findViewById(R.id.TextViewEmployeeDescription);
-        description.setText(employee.GetDescription());
+        TextView description = view.findViewById(R.id.TextViewCommandDescription);
+        description.setText(command.GetDescription());
 
-        ImageView imagen = view.findViewById(R.id.ImageViewEmployee);
-        imagen.setImageDrawable(employee.GetImage());
+        ImageView imagen = view.findViewById(R.id.ImageViewCommand);
+        imagen.setImageDrawable(command.GetImage());
 
         return view;
     }

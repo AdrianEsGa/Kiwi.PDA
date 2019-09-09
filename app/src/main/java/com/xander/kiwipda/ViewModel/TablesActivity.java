@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.xander.kiwipda.GlobalApp;
 import com.xander.kiwipda.Model.Entities.Table;
-import com.xander.kiwipda.Model.Repositories.TablesRepository;
 import com.xander.kiwipda.R;
 import com.xander.kiwipda.ViewModel.Adapters.TableAdapter;
 
@@ -42,7 +41,7 @@ public class TablesActivity extends AppCompatActivity {
     }
 
     private void OpenOrdersActivity(){
-        Intent myIntent = new Intent(this, OrdersActivity.class);
+        Intent myIntent = new Intent(this, CommandsActivity.class);
         this.startActivity(myIntent);
     }
 

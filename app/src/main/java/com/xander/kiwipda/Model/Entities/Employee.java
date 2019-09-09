@@ -1,5 +1,4 @@
 package com.xander.kiwipda.Model.Entities;
-
 import android.graphics.drawable.Drawable;
 
 public class Employee {
@@ -25,6 +24,10 @@ public class Employee {
 
     public Drawable GetImage(){
         return _image;
+    }
+
+    public void SetImage(Drawable image){
+      _image = image;
     }
 
     public String toString(){
