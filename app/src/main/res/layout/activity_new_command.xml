@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewModel.NewCommandActivity">
+
+    <LinearLayout
+        android:id="@+id/PanelContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnBackToCommandsView"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:onClick="btnBackToCommandsView_Click"
+            android:text="Atrás" />
+
+        <TextView
+            android:id="@+id/TextViewNewCommandInfo"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:gravity="center"
+            android:text="TextView" />
+
+        <ListView
+            android:id="@+id/ListViewNewCommandDetails"
+            android:layout_width="match_parent"
+            android:layout_height="347dp" />
+
+        <LinearLayout
+            android:id="@+id/PanelNewCommandButtons"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/BtnAddProduct"
+                android:layout_width="82dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|top"
+                android:onClick="btnAddProduct_Click"
+                android:text="Añadir Producto" />
+
+            <Button
+                android:id="@+id/BtnFinalizeCommnad"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|top"
+                android:text="Finalizar" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

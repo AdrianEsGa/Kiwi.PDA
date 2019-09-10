@@ -1,47 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewModel.CommandsActivity">
+    tools:context=".ViewModel.ProductTypesActivity">
 
     <LinearLayout
         android:id="@+id/PanelContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="194dp">
+        android:orientation="vertical">
 
         <Button
-            android:id="@+id/btnBackToTablesView"
+            android:id="@+id/btnBackToNewCommandView"
             android:layout_width="match_parent"
             android:layout_height="64dp"
-            android:onClick="btnBackToTablesView_Click"
+            android:onClick="btnBackToNewCommandView_Click"
             android:text="Atrás" />
 
         <TextView
-            android:id="@+id/TextViewEmployee"
+            android:id="@+id/TextViewProductTypesInfo"
             android:layout_width="match_parent"
             android:layout_height="34dp"
             android:gravity="center"
             android:text="TextView" />
 
         <ListView
-            android:id="@+id/ListViewCommands"
+            android:id="@+id/ListViewProductTypes"
             android:layout_width="match_parent"
-            android:layout_height="345dp">
-
-        </ListView>
-
-        <Button
-            android:id="@+id/BtnNewCommand"
-            android:layout_width="match_parent"
-            android:layout_height="286dp"
-            android:gravity="center|top"
-            android:onClick="btnNewCommandView_Click"
-            android:text="Nueva Comanda" />
-
+            android:layout_height="match_parent" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

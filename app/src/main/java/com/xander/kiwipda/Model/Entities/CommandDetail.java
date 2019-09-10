@@ -6,7 +6,4 @@ public class CommandDetail {
     private int _productId;
     private int _quantity;
     private int _combinatedProductId;
-
-
-
 }

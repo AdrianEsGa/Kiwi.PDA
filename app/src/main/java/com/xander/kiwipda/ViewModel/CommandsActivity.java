@@ -61,6 +61,11 @@ public class CommandsActivity extends AppCompatActivity {
         this.startActivity(myIntent);
     }
 
+    public void btnNewCommandView_Click(View target) {
+        Intent myIntent = new Intent(this, NewCommandActivity.class);
+        this.startActivity(myIntent);
+    }
+
     private void SetViewInfo(){
         TextView textViewEmployee = findViewById(R.id.TextViewEmployee);
         textViewEmployee.setText(GlobalApp.Business.SelectedEmployee.GetName() + " / " + GlobalApp.Business.SelectedTable.GetName());

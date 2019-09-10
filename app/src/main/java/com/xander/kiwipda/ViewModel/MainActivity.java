@@ -7,10 +7,13 @@ import android.os.Bundle;
 
 import com.xander.kiwipda.GlobalApp;
 import com.xander.kiwipda.Model.Entities.Employee;
+import com.xander.kiwipda.Model.Entities.ProductType;
 import com.xander.kiwipda.Model.Entities.Table;
 import com.xander.kiwipda.Model.Repositories.EmployeesRepository;
 import com.xander.kiwipda.Model.Repositories.TablesRepository;
 import com.xander.kiwipda.R;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         {
             LoadEmployees();
             LoadTables();
+            LoadProductTypes();
+
             Intent myIntent = new Intent(this, EmployeesActivity.class);
             this.startActivity(myIntent);
         }
@@ -53,5 +58,30 @@ public class MainActivity extends AppCompatActivity {
         for (Table table : GlobalApp.Business.Tables) {
             table.SetImage(getResources().getDrawable(R.drawable.defaulttable));
         }
+    }
+
+    private void LoadProductTypes(){
+
+        ProductType copas = new ProductType(1, "Copas", "Ginebra, Wisky, Ron ...", null);
+        ProductType refrescos = new ProductType(2, "Refrescos", "", null);
+        ProductType cervezas = new ProductType(3, "Cervezas", "", null);
+        ProductType varios = new ProductType(4, "Varios", "", null);
+        ProductType cafes = new ProductType(6, "Cafés", "", null);
+        ProductType tes = new ProductType(7, "Tés", "", null);
+        ProductType cocktails = new ProductType(8, "Cocktails", "", null);
+        ProductType infusiones = new ProductType(9, "Infusiones", "", null);
+        ProductType vinos = new ProductType(10, "Vinos", "Mencia, Alvariño ..", null);
+
+        GlobalApp.Business.ProductTypes = new ArrayList<ProductType>();
+
+        GlobalApp.Business.ProductTypes.add(copas);
+        GlobalApp.Business.ProductTypes.add(refrescos);
+        GlobalApp.Business.ProductTypes.add(cervezas);
+        GlobalApp.Business.ProductTypes.add(varios);
+        GlobalApp.Business.ProductTypes.add(cafes);
+        GlobalApp.Business.ProductTypes.add(tes);
+        GlobalApp.Business.ProductTypes.add(cocktails);
+        GlobalApp.Business.ProductTypes.add(infusiones);
+        GlobalApp.Business.ProductTypes.add(vinos);
     }
 }
