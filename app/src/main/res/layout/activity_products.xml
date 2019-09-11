@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/PanelContent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewModel.ProductsActivity">
+
+    <LinearLayout
+        android:id="@+id/PanelContet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnBackToProductTypesView"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:onClick="btnBackToProductTypesView_Click"
+            android:text="Atrás" />
+
+        <TextView
+            android:id="@+id/TextViewProductsInfo"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:gravity="center"
+            android:text="TextView" />
+
+        <ListView
+            android:id="@+id/ListViewProducts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

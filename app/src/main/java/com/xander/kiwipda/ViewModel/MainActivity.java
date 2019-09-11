@@ -10,6 +10,7 @@ import com.xander.kiwipda.Model.Entities.Employee;
 import com.xander.kiwipda.Model.Entities.ProductType;
 import com.xander.kiwipda.Model.Entities.Table;
 import com.xander.kiwipda.Model.Repositories.EmployeesRepository;
+import com.xander.kiwipda.Model.Repositories.ProductsRepository;
 import com.xander.kiwipda.Model.Repositories.TablesRepository;
 import com.xander.kiwipda.R;
 
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
             LoadEmployees();
             LoadTables();
             LoadProductTypes();
+            LoadProducts();
 
             Intent myIntent = new Intent(this, EmployeesActivity.class);
             this.startActivity(myIntent);
@@ -83,5 +85,12 @@ public class MainActivity extends AppCompatActivity {
         GlobalApp.Business.ProductTypes.add(cocktails);
         GlobalApp.Business.ProductTypes.add(infusiones);
         GlobalApp.Business.ProductTypes.add(vinos);
+    }
+
+    private void LoadProducts() {
+
+        ProductsRepository productsRepository = new ProductsRepository();
+        GlobalApp.Business.Products = productsRepository.GetAllActive();
+
     }
 }

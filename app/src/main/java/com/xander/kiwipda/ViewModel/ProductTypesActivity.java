@@ -37,13 +37,18 @@ public class ProductTypesActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapter, View v, int position,
                                     long arg3) {
                 GlobalApp.Business.SelectedProductType = (ProductType) adapter.getItemAtPosition(position);
+                OpenProductsActivity();
             }
         });
     }
+
+    private void OpenProductsActivity(){
+        Intent myIntent = new Intent(this, ProductsActivity.class);
+        this.startActivity(myIntent);
+    }
+
     public void btnBackToNewCommandView_Click(View target) {
         Intent myIntent = new Intent(this, NewCommandActivity.class);
-
-
         this.startActivity(myIntent);
     }
 

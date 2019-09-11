@@ -25,7 +25,7 @@ public class ProductsRepository {
             ResultSet reader = command.executeQuery(strSQL);
 
             while (reader.next()) {
-                Product product = new Product(reader.getInt("Id"), reader.getString("Name"), "Camarero", Drawable.createFromStream(reader.getBinaryStream("Image"),""));
+                Product product = new Product(reader.getInt("Id"), reader.getString("Name"), "Camarero",reader.getInt("Type"), Drawable.createFromStream(reader.getBinaryStream("Image"),""));
                 products.add(product);
             }
 
