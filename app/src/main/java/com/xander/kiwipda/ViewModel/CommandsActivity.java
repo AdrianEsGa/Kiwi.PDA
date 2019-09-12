@@ -27,6 +27,7 @@ public class CommandsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_commands);
         SetViewInfo();
         LoadListViewCommands();
+        GlobalApp.Business.SelectedCommand = null;
     }
 
     private void LoadListViewCommands() {
@@ -62,7 +63,7 @@ public class CommandsActivity extends AppCompatActivity {
     }
 
     public void btnNewCommandView_Click(View target) {
-        Intent myIntent = new Intent(this, NewCommandActivity.class);
+        Intent myIntent = new Intent(this, ProductTypesActivity.class);
         this.startActivity(myIntent);
     }
 

@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/TextViewTableDescription"
-        android:layout_width="112dp"
+        android:layout_width="match_parent"
         android:layout_height="31dp"
         android:layout_below="@+id/TextViewTableName"
         android:layout_marginStart="25dp"
@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/TextViewTableName"
-        android:layout_width="108dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="24dp"

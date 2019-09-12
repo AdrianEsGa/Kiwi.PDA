@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/TextViewProductTypeDescription"
-        android:layout_width="175dp"
+        android:layout_width="match_parent"
         android:layout_height="33dp"
         android:layout_below="@+id/TextViewProductTypeName"
         android:layout_marginStart="25dp"
@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/TextViewProductTypeName"
-        android:layout_width="95dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="23dp"

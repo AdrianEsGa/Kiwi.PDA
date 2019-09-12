@@ -7,8 +7,8 @@
 
     <TextView
         android:id="@+id/TextViewProductDescription"
-        android:layout_width="175dp"
-        android:layout_height="33dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:layout_below="@+id/TextViewProductName"
         android:layout_marginStart="25dp"
         android:layout_marginLeft="25dp"
@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/TextViewProductName"
-        android:layout_width="95dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="23dp"
@@ -30,7 +30,7 @@
         android:text="Nombre"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#f65034"
-        android:textSize="21sp" />
+        android:textSize="18sp" />
 
     <ImageView
         android:id="@+id/ImageViewProduct"

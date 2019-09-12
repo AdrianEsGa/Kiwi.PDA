@@ -10,11 +10,11 @@ public class Product {
     private int _typeId;
     private Drawable _image;
 
-    public Product (int id, String name, String description, int _typeId, Drawable image){
+    public Product (int id, String name, String description, int typeId, Drawable image){
         _id = id;
         _name = name;
         _description = description;
-        _typeId = _typeId;
+        _typeId = typeId;
         _image = image;
     }
 
@@ -24,6 +24,10 @@ public class Product {
 
     public String GetDescription(){
         return _description;
+    }
+
+    public int GetType(){
+        return _typeId;
     }
 
     public Drawable GetImage(){

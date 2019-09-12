@@ -16,23 +16,31 @@
         <Button
             android:id="@+id/btnBackToProductTypesView"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="wrap_content"
             android:onClick="btnBackToProductTypesView_Click"
             android:text="Atrás" />
 
         <TextView
             android:id="@+id/TextViewProductsInfo"
             android:layout_width="match_parent"
-            android:layout_height="34dp"
+            android:layout_height="25dp"
             android:gravity="center"
             android:text="TextView" />
 
         <ListView
             android:id="@+id/ListViewProducts"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="386dp">
 
         </ListView>
+
+        <Button
+            android:id="@+id/BtnConfirm"
+            android:layout_width="match_parent"
+            android:layout_height="313dp"
+            android:gravity="center|top"
+            android:onClick="btConfirm_Click"
+            android:text="Confirmar" />
 
     </LinearLayout>
 

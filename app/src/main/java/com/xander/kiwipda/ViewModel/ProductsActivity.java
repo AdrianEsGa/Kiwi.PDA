@@ -10,10 +10,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xander.kiwipda.GlobalApp;
+import com.xander.kiwipda.Model.Entities.Product;
 import com.xander.kiwipda.Model.Entities.ProductType;
 import com.xander.kiwipda.R;
 import com.xander.kiwipda.ViewModel.Adapters.ProductAdapter;
 import com.xander.kiwipda.ViewModel.Adapters.ProductTypeAdapter;
+
+import java.util.ArrayList;
 
 public class ProductsActivity extends AppCompatActivity {
 
@@ -27,8 +30,17 @@ public class ProductsActivity extends AppCompatActivity {
 
     private void LoadListViewProducts() {
 
+        ArrayList<Product> productsByType = new ArrayList<>();
+        for (Product product: GlobalApp.Business.Products) {
+
+            if(product.GetType() == GlobalApp.Business.SelectedProductType.GetId())
+            {
+                productsByType.add(product);
+            }
+        }
+
         ListView listViewProducts = findViewById(R.id.ListViewProducts);
-        ProductAdapter arrayAdapter = new ProductAdapter (this, GlobalApp.Business.Products);
+        ProductAdapter arrayAdapter = new ProductAdapter (this, productsByType);
         listViewProducts.setAdapter(arrayAdapter);
 
         listViewProducts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -40,6 +52,11 @@ public class ProductsActivity extends AppCompatActivity {
 
     public void btnBackToProductTypesView_Click(View target) {
         Intent myIntent = new Intent(this, ProductTypesActivity.class);
+        this.startActivity(myIntent);
+    }
+
+    public void btConfirm_Click(View target) {
+        Intent myIntent = new Intent(this, NewCommandActivity.class);
         this.startActivity(myIntent);
     }
 

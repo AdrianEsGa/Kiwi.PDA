@@ -22,6 +22,7 @@ public class CommandDetailsActivity extends AppCompatActivity {
     public void btnBackToCommandsView_Click(View target) {
         Intent myIntent = new Intent(this, CommandsActivity.class);
         this.startActivity(myIntent);
+        GlobalApp.Business.SelectedCommand = null;
     }
 
     private void SetViewInfo(){
