@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xander.kiwipda.GlobalApp;
 import com.xander.kiwipda.R;
+import com.xander.kiwipda.ViewModel.Adapters.ProductAdapter;
 
 public class NewCommandActivity extends AppCompatActivity {
 
@@ -28,4 +30,10 @@ public class NewCommandActivity extends AppCompatActivity {
         TextView textViewNewCommandInfo = findViewById(R.id.TextViewNewCommandInfo);
         textViewNewCommandInfo.setText(GlobalApp.Business.SelectedEmployee.GetName() + " / " + GlobalApp.Business.SelectedTable.GetName() + " / " + "Nueva Comanda");
     }
+
+    private void LoadListViewCommandDetails() {
+
+
+    }
+
 }

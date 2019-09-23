@@ -23,14 +23,14 @@
         <ListView
             android:id="@+id/ListViewCommands"
             android:layout_width="match_parent"
-            android:layout_height="345dp">
+            android:layout_height="413dp">
 
         </ListView>
 
         <Button
             android:id="@+id/BtnNewCommand"
             android:layout_width="match_parent"
-            android:layout_height="347dp"
+            android:layout_height="288dp"
             android:gravity="center|top"
             android:onClick="btnNewCommandView_Click"
             android:text="Nueva Comanda" />

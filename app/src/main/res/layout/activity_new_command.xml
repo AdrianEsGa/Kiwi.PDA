@@ -21,7 +21,7 @@
         <ListView
             android:id="@+id/ListViewNewCommandDetails"
             android:layout_width="match_parent"
-            android:layout_height="347dp" />
+            android:layout_height="427dp" />
 
         <LinearLayout
             android:id="@+id/PanelNewCommandButtons"

@@ -23,7 +23,6 @@ import java.util.ArrayList;
 
 public class ProductsActivity extends AppCompatActivity {
 
-    int quantity = 0;
     private ListView listViewProducts;
 
     @Override
@@ -72,55 +71,19 @@ public class ProductsActivity extends AppCompatActivity {
 
         LinearLayout parentRow = (LinearLayout) view.getParent();
         TextView quantityView = parentRow.findViewById(R.id.TextViewQuantity);
-        String quantityString = quantityView.getText().toString();
-        quantity = Integer.parseInt(quantityString);
 
-        for (CommandDetail commandDetail: GlobalApp.Business.SelectedCommand.GetDetails()) {
-
-            if(product.GetId() == commandDetail.GetProductId()){
-                quantity -= 1;
-
-                if (quantity <= 0) {
-                    quantity = 0;
-                    commandDetail.SetQuantity(quantity);
-                    GlobalApp.Business.SelectedCommand.GetDetails().remove(commandDetail);
-                }
-                else {
-                    commandDetail.SetQuantity(quantity);
-                }
-
-                break;
-            }
-        }
-
-        quantityView.setText(String.valueOf(quantity));
+        quantityView.setText(String.valueOf(Decrement(product)));
     }
 
     public void btnIncrement_Click(View view) {
 
+        LinearLayout parentRow = (LinearLayout) view.getParent();
+        TextView quantityView = parentRow.findViewById(R.id.TextViewQuantity);
+
         int position = listViewProducts.getPositionForView((View) view.getParent());
         Product product = (Product) listViewProducts.getItemAtPosition(position);
 
-        LinearLayout parentRow = (LinearLayout) view.getParent();
-        TextView quantityView = parentRow.findViewById(R.id.TextViewQuantity);
-        String quantityString = quantityView.getText().toString();
-        quantity = Integer.parseInt(quantityString);
-
-        if (quantity == 0){
-            quantity = 1;
-            CommandDetail commandDetail = new CommandDetail(product.GetId(), quantity);
-            GlobalApp.Business.SelectedCommand.GetDetails().add(commandDetail);
-        }
-        else {
-            for (CommandDetail commandDetail : GlobalApp.Business.SelectedCommand.GetDetails()) {
-
-                if (product.GetId() == commandDetail.GetProductId()) {
-                    quantity += 1;
-                    commandDetail.SetQuantity(quantity);
-                }
-            }
-        }
-        quantityView.setText(String.valueOf(quantity));
+        quantityView.setText(String.valueOf(Increment(product)));
     }
 
     public void btConfirm_Click(View target) {
@@ -132,4 +95,51 @@ public class ProductsActivity extends AppCompatActivity {
         TextView textViewProductsInfo = findViewById(R.id.TextViewProductsInfo);
         textViewProductsInfo.setText(GlobalApp.Business.SelectedEmployee.GetName() + " / " + GlobalApp.Business.SelectedTable.GetName() + " /  Nueva Comanda / " + GlobalApp.Business.SelectedProductType.GetName());
     }
+
+    private int Decrement(Product product){
+
+        int newQuantity = 0;
+
+        for (CommandDetail commandDetail: GlobalApp.Business.SelectedCommand.GetDetails()) {
+
+            if(product.GetId() == commandDetail.GetProductId()){
+                newQuantity = commandDetail.GetQuantity() - 1;
+
+                if (newQuantity == 0) {
+                    GlobalApp.Business.SelectedCommand.GetDetails().remove(commandDetail);
+                    product.SetQuantity(0);
+                }
+                else {
+                    commandDetail.SetQuantity(newQuantity);
+                }
+                break;
+            }
+        }
+
+        return newQuantity;
+    }
+
+    private int Increment(Product product){
+
+        boolean isNewElement = true;
+        int newQuantity = 1;
+
+        for (CommandDetail commandDetail : GlobalApp.Business.SelectedCommand.GetDetails()) {
+
+            if (product.GetId() == commandDetail.GetProductId()) {
+                newQuantity = commandDetail.GetQuantity() + 1;
+                commandDetail.SetQuantity(newQuantity);
+                isNewElement = false;
+                break;
+            }
+        }
+
+        if(isNewElement){
+            CommandDetail commandDetail = new CommandDetail(product.GetId(), newQuantity);
+            GlobalApp.Business.SelectedCommand.GetDetails().add(commandDetail);
+        }
+
+      return newQuantity;
+    }
+
 }
