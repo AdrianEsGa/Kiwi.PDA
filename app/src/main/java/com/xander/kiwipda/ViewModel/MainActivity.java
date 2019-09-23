@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void LoadProductTypes(){
 
-        ProductType copas = new ProductType(1, "Copas", "Ginebra, Wisky, Ron ...", null);
+        ProductType copas = new ProductType(1, "Copas", "", null);
         ProductType refrescos = new ProductType(2, "Refrescos", "", null);
         ProductType cervezas = new ProductType(3, "Cervezas", "", null);
         ProductType varios = new ProductType(4, "Varios", "", null);

@@ -57,12 +57,9 @@ public class CommandsActivity extends AppCompatActivity {
         this.startActivity(myIntent);
     }
 
-    public void btnBackToTablesView_Click(View target) {
-        Intent myIntent = new Intent(this, TablesActivity.class);
-        this.startActivity(myIntent);
-    }
-
     public void btnNewCommandView_Click(View target) {
+
+        GlobalApp.Business.SelectedCommand  = new Command(GlobalApp.Business.SelectedEmployee.GetId(), GlobalApp.Business.SelectedTable.GetId());
         Intent myIntent = new Intent(this, ProductTypesActivity.class);
         this.startActivity(myIntent);
     }

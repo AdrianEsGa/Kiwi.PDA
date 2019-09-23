@@ -45,11 +45,6 @@ public class TablesActivity extends AppCompatActivity {
         this.startActivity(myIntent);
     }
 
-    public void btnBackToEmployeesView_Click(View target) {
-        Intent myIntent = new Intent(this, EmployeesActivity.class);
-        this.startActivity(myIntent);
-    }
-
     private void SetViewInfo(){
         TextView textViewEmployee = findViewById(R.id.TextViewEmployee);
         textViewEmployee.setText(GlobalApp.Business.SelectedEmployee.GetName());

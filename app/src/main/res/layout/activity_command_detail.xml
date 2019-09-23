@@ -13,13 +13,6 @@
         tools:layout_editor_absoluteX="81dp"
         tools:layout_editor_absoluteY="199dp">
 
-        <Button
-            android:id="@+id/btnBackToCommandsView"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:onClick="btnBackToCommandsView_Click"
-            android:text="Atrás" />
-
         <TextView
             android:id="@+id/TextViewCommandDetailsInfo"
             android:layout_width="match_parent"

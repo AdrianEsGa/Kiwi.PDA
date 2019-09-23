@@ -6,24 +6,24 @@ public class Product {
 
     private int _id;
     private String _name;
-    private String _description;
     private int _typeId;
     private Drawable _image;
+    private int _quantity;
 
-    public Product (int id, String name, String description, int typeId, Drawable image){
+    public Product (int id, String name, int typeId, Drawable image){
         _id = id;
         _name = name;
-        _description = description;
         _typeId = typeId;
         _image = image;
+        _quantity = 0;
+    }
+
+    public int GetId(){
+        return _id;
     }
 
     public String GetName(){
         return _name;
-    }
-
-    public String GetDescription(){
-        return _description;
     }
 
     public int GetType(){
@@ -37,6 +37,12 @@ public class Product {
     public void SetImage(Drawable image){
         _image = image;
     }
+
+    public void SetQuantity(int quantity){
+        _quantity = quantity;
+    }
+
+    public int GetQuantity(){ return _quantity; }
 
     public String toString(){
         return _name;

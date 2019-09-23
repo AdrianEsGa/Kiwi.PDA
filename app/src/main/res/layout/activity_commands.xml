@@ -13,13 +13,6 @@
         tools:layout_editor_absoluteX="103dp"
         tools:layout_editor_absoluteY="194dp">
 
-        <Button
-            android:id="@+id/btnBackToTablesView"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:onClick="btnBackToTablesView_Click"
-            android:text="Atrás" />
-
         <TextView
             android:id="@+id/TextViewEmployee"
             android:layout_width="match_parent"
@@ -37,7 +30,7 @@
         <Button
             android:id="@+id/BtnNewCommand"
             android:layout_width="match_parent"
-            android:layout_height="286dp"
+            android:layout_height="347dp"
             android:gravity="center|top"
             android:onClick="btnNewCommandView_Click"
             android:text="Nueva Comanda" />

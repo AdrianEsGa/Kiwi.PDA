@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xander.kiwipda.GlobalApp;
+import com.xander.kiwipda.Model.Entities.CommandDetail;
+import com.xander.kiwipda.Model.Entities.Employee;
 import com.xander.kiwipda.Model.Entities.Product;
 import com.xander.kiwipda.Model.Entities.ProductType;
 import com.xander.kiwipda.R;
@@ -20,12 +23,16 @@ import java.util.ArrayList;
 
 public class ProductsActivity extends AppCompatActivity {
 
+    int quantity = 0;
+    private ListView listViewProducts;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
         SetViewInfo();
         LoadListViewProducts();
+        listViewProducts = findViewById(R.id.ListViewProducts);
     }
 
     private void LoadListViewProducts() {
@@ -36,6 +43,13 @@ public class ProductsActivity extends AppCompatActivity {
             if(product.GetType() == GlobalApp.Business.SelectedProductType.GetId())
             {
                 productsByType.add(product);
+
+                for (CommandDetail commandDetail: GlobalApp.Business.SelectedCommand.GetDetails()) {
+
+                    if(product.GetId() == commandDetail.GetProductId()){
+                        product.SetQuantity(commandDetail.GetQuantity());
+                    }
+                }
             }
         }
 
@@ -46,13 +60,67 @@ public class ProductsActivity extends AppCompatActivity {
         listViewProducts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
+
             }
         });
     }
 
-    public void btnBackToProductTypesView_Click(View target) {
-        Intent myIntent = new Intent(this, ProductTypesActivity.class);
-        this.startActivity(myIntent);
+    public void btnDecrement_Click(View view) {
+
+        int position = listViewProducts.getPositionForView((View) view.getParent());
+        Product product = (Product) listViewProducts.getItemAtPosition(position);
+
+        LinearLayout parentRow = (LinearLayout) view.getParent();
+        TextView quantityView = parentRow.findViewById(R.id.TextViewQuantity);
+        String quantityString = quantityView.getText().toString();
+        quantity = Integer.parseInt(quantityString);
+
+        for (CommandDetail commandDetail: GlobalApp.Business.SelectedCommand.GetDetails()) {
+
+            if(product.GetId() == commandDetail.GetProductId()){
+                quantity -= 1;
+
+                if (quantity <= 0) {
+                    quantity = 0;
+                    commandDetail.SetQuantity(quantity);
+                    GlobalApp.Business.SelectedCommand.GetDetails().remove(commandDetail);
+                }
+                else {
+                    commandDetail.SetQuantity(quantity);
+                }
+
+                break;
+            }
+        }
+
+        quantityView.setText(String.valueOf(quantity));
+    }
+
+    public void btnIncrement_Click(View view) {
+
+        int position = listViewProducts.getPositionForView((View) view.getParent());
+        Product product = (Product) listViewProducts.getItemAtPosition(position);
+
+        LinearLayout parentRow = (LinearLayout) view.getParent();
+        TextView quantityView = parentRow.findViewById(R.id.TextViewQuantity);
+        String quantityString = quantityView.getText().toString();
+        quantity = Integer.parseInt(quantityString);
+
+        if (quantity == 0){
+            quantity = 1;
+            CommandDetail commandDetail = new CommandDetail(product.GetId(), quantity);
+            GlobalApp.Business.SelectedCommand.GetDetails().add(commandDetail);
+        }
+        else {
+            for (CommandDetail commandDetail : GlobalApp.Business.SelectedCommand.GetDetails()) {
+
+                if (product.GetId() == commandDetail.GetProductId()) {
+                    quantity += 1;
+                    commandDetail.SetQuantity(quantity);
+                }
+            }
+        }
+        quantityView.setText(String.valueOf(quantity));
     }
 
     public void btConfirm_Click(View target) {
@@ -62,6 +130,6 @@ public class ProductsActivity extends AppCompatActivity {
 
     private void SetViewInfo(){
         TextView textViewProductsInfo = findViewById(R.id.TextViewProductsInfo);
-        textViewProductsInfo.setText(GlobalApp.Business.SelectedEmployee.GetName() + " / " + GlobalApp.Business.SelectedTable.GetName() + " / " + "Nueva Comanda");
+        textViewProductsInfo.setText(GlobalApp.Business.SelectedEmployee.GetName() + " / " + GlobalApp.Business.SelectedTable.GetName() + " /  Nueva Comanda / " + GlobalApp.Business.SelectedProductType.GetName());
     }
 }

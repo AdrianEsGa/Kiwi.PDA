@@ -13,13 +13,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnBackToProductTypesView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="btnBackToProductTypesView_Click"
-            android:text="Atrás" />
-
         <TextView
             android:id="@+id/TextViewProductsInfo"
             android:layout_width="match_parent"

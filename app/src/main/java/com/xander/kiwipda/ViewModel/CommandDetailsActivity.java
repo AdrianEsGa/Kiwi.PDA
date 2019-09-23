@@ -19,12 +19,6 @@ public class CommandDetailsActivity extends AppCompatActivity {
         SetViewInfo();
     }
 
-    public void btnBackToCommandsView_Click(View target) {
-        Intent myIntent = new Intent(this, CommandsActivity.class);
-        this.startActivity(myIntent);
-        GlobalApp.Business.SelectedCommand = null;
-    }
-
     private void SetViewInfo(){
         TextView textViewCommandDetailsInfo = findViewById(R.id.TextViewCommandDetailsInfo);
         textViewCommandDetailsInfo.setText(GlobalApp.Business.SelectedEmployee.GetName() + " / " + GlobalApp.Business.SelectedTable.GetName() + " / " + GlobalApp.Business.SelectedCommand.GetName());

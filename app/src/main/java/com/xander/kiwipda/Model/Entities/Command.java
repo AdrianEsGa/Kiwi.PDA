@@ -2,6 +2,7 @@ package com.xander.kiwipda.Model.Entities;
 
 import android.graphics.drawable.Drawable;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Command {
@@ -12,6 +13,7 @@ public class Command {
     private Date _date;
     private CommandStatus _status;
     private Drawable _image;
+    private ArrayList<CommandDetail> _details;
 
     public Command(int id, int employeeId, int tableId, int stationId, Date date, int status ){
         _id = id;
@@ -20,6 +22,13 @@ public class Command {
         _stationId = stationId;
         _date = date;
         _status =  CommandStatus.values()[status];
+        _details = new ArrayList<>();
+    }
+
+    public Command(int employeeId, int tableId){
+        _employeeId = employeeId;
+        _tableId = tableId;
+        _details = new ArrayList<>();
     }
 
     public String GetName(){
@@ -36,6 +45,10 @@ public class Command {
 
     public void SetImage(Drawable image){
         _image = image;
+    }
+
+    public ArrayList<CommandDetail> GetDetails(){
+        return _details;
     }
 
     public String toString(){

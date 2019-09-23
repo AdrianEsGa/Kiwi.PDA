@@ -19,11 +19,6 @@ public class NewCommandActivity extends AppCompatActivity {
         SetViewInfo();
     }
 
-    public void btnBackToCommandsView_Click(View target) {
-        Intent myIntent = new Intent(this, CommandsActivity.class);
-        this.startActivity(myIntent);
-    }
-
     public void btnAddProduct_Click(View target) {
         Intent myIntent = new Intent(this, ProductTypesActivity.class);
         this.startActivity(myIntent);

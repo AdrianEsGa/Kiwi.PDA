@@ -47,11 +47,6 @@ public class ProductTypesActivity extends AppCompatActivity {
         this.startActivity(myIntent);
     }
 
-    public void btnBackToNewCommandView_Click(View target) {
-        Intent myIntent = new Intent(this, NewCommandActivity.class);
-        this.startActivity(myIntent);
-    }
-
     private void SetViewInfo(){
         TextView textViewProductTypesInfo = findViewById(R.id.TextViewProductTypesInfo);
         textViewProductTypesInfo.setText(GlobalApp.Business.SelectedEmployee.GetName() + " / " + GlobalApp.Business.SelectedTable.GetName() + " / " + "Nueva Comanda");

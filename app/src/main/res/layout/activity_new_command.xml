@@ -11,13 +11,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnBackToCommandsView"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:onClick="btnBackToCommandsView_Click"
-            android:text="Atrás" />
-
         <TextView
             android:id="@+id/TextViewNewCommandInfo"
             android:layout_width="match_parent"

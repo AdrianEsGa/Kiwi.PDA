@@ -16,6 +16,10 @@ public class Table {
         _image = image;
     }
 
+    public int GetId(){
+        return _id;
+    }
+
     public String GetName(){
         return _name;
     }
