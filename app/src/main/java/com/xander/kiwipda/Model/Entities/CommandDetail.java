@@ -1,28 +1,27 @@
 package com.xander.kiwipda.Model.Entities;
 
+
 public class CommandDetail {
     private int _id;
     private int _commnadId;
-    private int _productId;
+    private Product _product;
     private int _quantity;
     private int _combinatedProductId;
 
 
-    public CommandDetail(int productId, int quantity){
-        _productId = productId;
+    public CommandDetail(Product product, int quantity){
+        _product = product;
         _quantity = quantity;
     }
 
-    public int GetProductId(){
-        return _productId;
+    public Product GetProduct(){
+        return _product;
     }
 
     public int GetQuantity(){
         return _quantity;
     }
 
-    public int SetQuantity(int quantity){
-        return _quantity = quantity;
-    }
+    public void SetQuantity(int quantity){ _quantity = quantity; }
 
 }

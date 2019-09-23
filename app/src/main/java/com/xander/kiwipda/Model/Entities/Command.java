@@ -51,6 +51,14 @@ public class Command {
         return _details;
     }
 
+    public int GetEmployeeId(){
+        return _employeeId;
+    }
+
+    public int GetTableId(){
+        return _tableId;
+    }
+
     public String toString(){
         return "Comanda " + _id;
     }

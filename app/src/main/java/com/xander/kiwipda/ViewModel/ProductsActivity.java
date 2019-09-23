@@ -45,7 +45,7 @@ public class ProductsActivity extends AppCompatActivity {
 
                 for (CommandDetail commandDetail: GlobalApp.Business.SelectedCommand.GetDetails()) {
 
-                    if(product.GetId() == commandDetail.GetProductId()){
+                    if(product.GetId() == commandDetail.GetProduct().GetId()){
                         product.SetQuantity(commandDetail.GetQuantity());
                     }
                 }
@@ -102,7 +102,7 @@ public class ProductsActivity extends AppCompatActivity {
 
         for (CommandDetail commandDetail: GlobalApp.Business.SelectedCommand.GetDetails()) {
 
-            if(product.GetId() == commandDetail.GetProductId()){
+            if(product.GetId() == commandDetail.GetProduct().GetId()){
                 newQuantity = commandDetail.GetQuantity() - 1;
 
                 if (newQuantity == 0) {
@@ -126,7 +126,7 @@ public class ProductsActivity extends AppCompatActivity {
 
         for (CommandDetail commandDetail : GlobalApp.Business.SelectedCommand.GetDetails()) {
 
-            if (product.GetId() == commandDetail.GetProductId()) {
+            if (product.GetId() == commandDetail.GetProduct().GetId()) {
                 newQuantity = commandDetail.GetQuantity() + 1;
                 commandDetail.SetQuantity(newQuantity);
                 isNewElement = false;
@@ -135,7 +135,7 @@ public class ProductsActivity extends AppCompatActivity {
         }
 
         if(isNewElement){
-            CommandDetail commandDetail = new CommandDetail(product.GetId(), newQuantity);
+            CommandDetail commandDetail = new CommandDetail(product, newQuantity);
             GlobalApp.Business.SelectedCommand.GetDetails().add(commandDetail);
         }
 

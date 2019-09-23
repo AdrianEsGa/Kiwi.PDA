@@ -20,11 +20,11 @@ public class TablesRepository {
         try {
 
             command = Database.SQLServer.Connect().createStatement();
-            String strSQL = "Select Code, Name From BarTables";
+            String strSQL = "Select Id, Name From BarTables";
             ResultSet reader = command.executeQuery(strSQL);
 
             while (reader.next()) {
-                Table table = new Table(reader.getInt("Code"), reader.getString("Name"), "Soy una mesa",null);
+                Table table = new Table(reader.getInt("Id"), reader.getString("Name"), "Soy una mesa",null);
                 tables.add(table);
             }
 
