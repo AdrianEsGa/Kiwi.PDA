@@ -48,6 +48,7 @@ public class EmployeesActivity extends AppCompatActivity {
     private void OpenTablesActivity(){
         Intent myIntent = new Intent(this, TablesActivity.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         this.startActivity(myIntent);
     }
 }

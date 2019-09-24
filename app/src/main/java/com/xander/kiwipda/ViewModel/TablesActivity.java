@@ -48,6 +48,7 @@ public class TablesActivity extends AppCompatActivity {
     private void OpenCommandsActivity(){
         Intent myIntent = new Intent(this, CommandsActivity.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         this.startActivity(myIntent);
     }
 

@@ -40,6 +40,7 @@ public class NewCommandActivity extends AppCompatActivity {
     public void btnAddProduct_Click(View target) {
         Intent myIntent = new Intent(this, ProductTypesActivity.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         this.startActivity(myIntent);
     }
 
@@ -110,6 +111,7 @@ public class NewCommandActivity extends AppCompatActivity {
         GlobalApp.Business.SelectedCommand = new Command();
         Intent myIntent = new Intent(this, TablesActivity.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         this.startActivity(myIntent);
     }
 }

@@ -60,6 +60,7 @@ public class CommandsActivity extends AppCompatActivity {
     private void OpenCommandDetailsActivity(){
         Intent myIntent = new Intent(this, CommandDetailsActivity.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         this.startActivity(myIntent);
     }
 
@@ -68,6 +69,7 @@ public class CommandsActivity extends AppCompatActivity {
         GlobalApp.Business.SelectedCommand  = new Command(GlobalApp.Business.SelectedEmployee.GetId(), GlobalApp.Business.SelectedTable.GetId());
         Intent myIntent = new Intent(this, ProductTypesActivity.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         this.startActivity(myIntent);
     }
 

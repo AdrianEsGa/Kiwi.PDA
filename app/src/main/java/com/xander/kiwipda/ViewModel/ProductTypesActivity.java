@@ -50,6 +50,7 @@ public class ProductTypesActivity extends AppCompatActivity {
     private void OpenProductsActivity(){
         Intent myIntent = new Intent(this, ProductsActivity.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         this.startActivity(myIntent);
     }
 

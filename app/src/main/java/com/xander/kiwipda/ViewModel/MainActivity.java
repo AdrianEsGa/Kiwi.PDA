@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
             Intent myIntent = new Intent(this, EmployeesActivity.class);
             myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             this.startActivity(myIntent);
         }
         catch (Exception ex){

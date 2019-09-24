@@ -34,15 +34,17 @@ public class ProductsActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+        listViewProducts = findViewById(R.id.ListViewProducts);
         SetViewInfo();
         LoadListViewProducts();
-        listViewProducts = findViewById(R.id.ListViewProducts);
     }
 
     private void LoadListViewProducts() {
 
         ArrayList<Product> productsByType = new ArrayList<>();
         for (Product product: GlobalApp.Business.Products) {
+
+            product.SetQuantity(0);
 
             if(product.GetType() == GlobalApp.Business.SelectedProductType.GetId())
             {
@@ -57,7 +59,6 @@ public class ProductsActivity extends AppCompatActivity {
             }
         }
 
-        ListView listViewProducts = findViewById(R.id.ListViewProducts);
         ProductAdapter arrayAdapter = new ProductAdapter (this, productsByType);
         listViewProducts.setAdapter(arrayAdapter);
 
@@ -94,6 +95,7 @@ public class ProductsActivity extends AppCompatActivity {
     public void btViewCommand_Click(View target) {
         Intent myIntent = new Intent(this, NewCommandActivity.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         this.startActivity(myIntent);
     }
 
