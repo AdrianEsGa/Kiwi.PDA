@@ -10,6 +10,8 @@ public class Product {
     private Drawable _image;
     private int _quantity;
 
+    public Product () {}
+
     public Product (int id, String name, int typeId, Drawable image){
         _id = id;
         _name = name;

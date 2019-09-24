@@ -15,6 +15,10 @@ public class Command {
     private Drawable _image;
     private ArrayList<CommandDetail> _details;
 
+    public Command() {
+        _details = new ArrayList<>();
+    }
+
     public Command(int id, int employeeId, int tableId, int stationId, Date date, int status ){
         _id = id;
         _employeeId = employeeId;
@@ -29,6 +33,10 @@ public class Command {
         _employeeId = employeeId;
         _tableId = tableId;
         _details = new ArrayList<>();
+    }
+
+    public int GetId(){
+        return _id;
     }
 
     public String GetName(){

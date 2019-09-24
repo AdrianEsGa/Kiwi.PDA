@@ -27,7 +27,7 @@ public class EmployeesRepository {
             ResultSet reader = command.executeQuery(strSQL);
 
             while (reader.next()) {
-                Employee employee = new Employee(reader.getInt("Id"), reader.getString("Name"), "Camarero", Drawable.createFromStream(reader.getBinaryStream("Image"),""));
+                Employee employee = new Employee(reader.getInt("Id"), reader.getString("Name"), Drawable.createFromStream(reader.getBinaryStream("Image"),""));
                 employees.add(employee);
             }
 

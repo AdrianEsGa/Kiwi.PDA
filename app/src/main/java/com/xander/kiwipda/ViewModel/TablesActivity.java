@@ -35,12 +35,12 @@ public class TablesActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapter, View v, int position,
                                     long arg3) {
                 GlobalApp.Business.SelectedTable = (Table) adapter.getItemAtPosition(position);
-                OpenOrdersActivity();
+                OpenCommandsActivity();
             }
         });
     }
 
-    private void OpenOrdersActivity(){
+    private void OpenCommandsActivity(){
         Intent myIntent = new Intent(this, CommandsActivity.class);
         this.startActivity(myIntent);
     }

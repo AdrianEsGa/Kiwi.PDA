@@ -64,15 +64,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void LoadProductTypes(){
 
-        ProductType copas = new ProductType(1, "Copas", "", null);
-        ProductType refrescos = new ProductType(2, "Refrescos", "", null);
-        ProductType cervezas = new ProductType(3, "Cervezas", "", null);
-        ProductType varios = new ProductType(4, "Varios", "", null);
-        ProductType cafes = new ProductType(6, "Cafés", "", null);
-        ProductType tes = new ProductType(7, "Tés", "", null);
-        ProductType cocktails = new ProductType(8, "Cocktails", "", null);
-        ProductType infusiones = new ProductType(9, "Infusiones", "", null);
-        ProductType vinos = new ProductType(10, "Vinos", "Mencia, Alvariño ..", null);
+        ProductType copas = new ProductType(1, "Copas", getResources().getDrawable(R.drawable.copas));
+        ProductType refrescos = new ProductType(2, "Refrescos", getResources().getDrawable(R.drawable.refrescos));
+        ProductType cervezas = new ProductType(3, "Cervezas", getResources().getDrawable(R.drawable.cervezas));
+        ProductType varios = new ProductType(4, "Varios", null);
+        ProductType cafes = new ProductType(6, "Cafés", getResources().getDrawable(R.drawable.cafes));
+        ProductType tes = new ProductType(7, "Tés", getResources().getDrawable(R.drawable.tes));
+        ProductType cocktails = new ProductType(8, "Cocktails", getResources().getDrawable(R.drawable.cocktails));
+        ProductType infusiones = new ProductType(9, "Infusiones", getResources().getDrawable(R.drawable.infusiones));
+        ProductType vinos = new ProductType(10, "Vinos", getResources().getDrawable(R.drawable.vinos));
 
         GlobalApp.Business.ProductTypes = new ArrayList<ProductType>();
 

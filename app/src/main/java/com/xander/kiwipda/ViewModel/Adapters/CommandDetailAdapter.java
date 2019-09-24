@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,10 +20,12 @@ public class CommandDetailAdapter extends BaseAdapter {
 
     protected Activity activity;
     protected ArrayList<CommandDetail> items;
+    protected boolean showButtons;
 
-    public CommandDetailAdapter(Activity activity, ArrayList<CommandDetail> items) {
+    public CommandDetailAdapter(Activity activity, ArrayList<CommandDetail> items, boolean showButtons) {
         this.activity = activity;
         this.items = items;
+        this.showButtons = showButtons;
     }
 
     @Override
@@ -70,6 +73,13 @@ public class CommandDetailAdapter extends BaseAdapter {
 
         ImageView imagen = view.findViewById(R.id.ImageViewProduct);
         imagen.setImageDrawable(commandDetail.GetProduct().GetImage());
+
+        if (!showButtons){
+            Button btnDecrement = view.findViewById(R.id.btnDecrement);
+            Button btnIncrement = view.findViewById(R.id.btnIncrement);
+            btnDecrement.setVisibility(View.INVISIBLE);
+            btnIncrement.setVisibility(View.INVISIBLE);
+        }
 
         return view;
     }

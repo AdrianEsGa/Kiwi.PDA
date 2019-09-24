@@ -64,9 +64,6 @@ public class TableAdapter extends BaseAdapter {
         TextView title = view.findViewById(R.id.TextViewTableName);
         title.setText(table.GetName());
 
-        TextView description = view.findViewById(R.id.TextViewTableDescription);
-        description.setText(table.GetDescription());
-
         ImageView imagen = view.findViewById(R.id.ImageViewTable);
         imagen.setImageDrawable(table.GetImage());
 

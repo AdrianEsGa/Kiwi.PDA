@@ -6,36 +6,24 @@
     android:background="@android:color/background_light">
 
     <TextView
-        android:id="@+id/TextViewProductTypeDescription"
-        android:layout_width="match_parent"
-        android:layout_height="33dp"
-        android:layout_below="@+id/TextViewProductTypeName"
-        android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="4dp"
-        android:layout_toEndOf="@+id/ImageViewProductType"
-        android:layout_toRightOf="@+id/ImageViewProductType"
-        android:text="Descripción" />
-
-    <TextView
         android:id="@+id/TextViewProductTypeName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="169dp"
+        android:layout_height="69dp"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="23dp"
-        android:layout_marginLeft="23dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginLeft="11dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/ImageViewProductType"
         android:layout_toRightOf="@+id/ImageViewProductType"
+        android:gravity="center"
         android:text="Nombre"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#f65034"
         android:textSize="21sp" />
 
     <ImageView
         android:id="@+id/ImageViewProductType"
-        android:layout_width="74dp"
-        android:layout_height="65dp"
+        android:layout_width="82dp"
+        android:layout_height="75dp"
         android:layout_alignBottom="@+id/TextViewProductTypeDescription"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="8dp"

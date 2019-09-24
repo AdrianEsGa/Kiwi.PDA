@@ -32,7 +32,7 @@ public class CommandsActivity extends AppCompatActivity {
 
     private void LoadListViewCommands() {
 
-        ArrayList<Command> commands = commandRepository.GetAllActive();
+        ArrayList<Command> commands = commandRepository.GetByTable(GlobalApp.Business.SelectedTable.GetId());
 
         for (Command command: commands) {
             command.SetImage(getResources().getDrawable(R.drawable.defaultcommand));

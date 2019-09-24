@@ -28,12 +28,12 @@
         </ListView>
 
         <Button
-            android:id="@+id/BtnConfirm"
+            android:id="@+id/BtnViewCommand"
             android:layout_width="match_parent"
             android:layout_height="288dp"
             android:gravity="center|top"
-            android:onClick="btConfirm_Click"
-            android:text="Confirmar" />
+            android:onClick="btViewCommand_Click"
+            android:text="Ver comanda" />
 
     </LinearLayout>
 

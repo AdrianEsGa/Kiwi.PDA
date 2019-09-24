@@ -64,9 +64,6 @@ public class EmployeeAdapter extends BaseAdapter {
         TextView title = view.findViewById(R.id.TextViewEmployeeName);
         title.setText(employee.GetName());
 
-        TextView description = view.findViewById(R.id.TextViewEmployeeDescription);
-        description.setText(employee.GetDescription());
-
         ImageView imagen = view.findViewById(R.id.ImageViewEmployee);
         imagen.setImageDrawable(employee.GetImage());
 

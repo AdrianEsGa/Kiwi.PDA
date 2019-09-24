@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 public class TablesRepository {
 
@@ -24,7 +23,7 @@ public class TablesRepository {
             ResultSet reader = command.executeQuery(strSQL);
 
             while (reader.next()) {
-                Table table = new Table(reader.getInt("Id"), reader.getString("Name"), "Soy una mesa",null);
+                Table table = new Table(reader.getInt("Id"), reader.getString("Name") ,null);
                 tables.add(table);
             }
 

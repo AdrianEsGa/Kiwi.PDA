@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xander.kiwipda.GlobalApp;
+import com.xander.kiwipda.Model.Entities.Command;
 import com.xander.kiwipda.Model.Entities.CommandDetail;
 import com.xander.kiwipda.Model.Entities.Product;
 import com.xander.kiwipda.Model.Repositories.CommandRepository;
@@ -44,7 +45,7 @@ public class NewCommandActivity extends AppCompatActivity {
     private void LoadListViewCommandDetails() {
 
         ListView listViewNewCommandDetails = findViewById(R.id.ListViewNewCommandDetails);
-        CommandDetailAdapter arrayAdapter = new CommandDetailAdapter (this, GlobalApp.Business.SelectedCommand.GetDetails());
+        CommandDetailAdapter arrayAdapter = new CommandDetailAdapter (this, GlobalApp.Business.SelectedCommand.GetDetails(), true);
         listViewNewCommandDetails.setAdapter(arrayAdapter);
 
         listViewNewCommandDetails.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -100,6 +101,7 @@ public class NewCommandActivity extends AppCompatActivity {
         CommandRepository commandRepository = new CommandRepository();
         commandRepository.Save(GlobalApp.Business.SelectedCommand);
 
+        GlobalApp.Business.SelectedCommand = new Command();
         Intent myIntent = new Intent(this, TablesActivity.class);
         this.startActivity(myIntent);
     }

@@ -33,7 +33,6 @@
         android:gravity="center|left"
         android:text="Nombre"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#f65034"
         android:textSize="14sp" />
 
     <Button

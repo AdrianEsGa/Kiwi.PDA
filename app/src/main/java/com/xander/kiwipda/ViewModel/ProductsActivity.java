@@ -86,7 +86,7 @@ public class ProductsActivity extends AppCompatActivity {
         quantityView.setText(String.valueOf(Increment(product)));
     }
 
-    public void btConfirm_Click(View target) {
+    public void btViewCommand_Click(View target) {
         Intent myIntent = new Intent(this, NewCommandActivity.class);
         this.startActivity(myIntent);
     }

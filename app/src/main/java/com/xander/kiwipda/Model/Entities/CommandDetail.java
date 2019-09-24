@@ -8,6 +8,7 @@ public class CommandDetail {
     private int _quantity;
     private int _combinatedProductId;
 
+    public CommandDetail() {}
 
     public CommandDetail(Product product, int quantity){
         _product = product;

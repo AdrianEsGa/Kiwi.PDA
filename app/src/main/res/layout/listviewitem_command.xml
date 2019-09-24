@@ -29,7 +29,6 @@
         android:layout_toRightOf="@+id/ImageViewCommand"
         android:text="Nombre"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#f65034"
         android:textSize="21sp" />
 
     <ImageView

@@ -65,9 +65,6 @@ public class ProductTypeAdapter extends BaseAdapter {
         TextView title = view.findViewById(R.id.TextViewProductTypeName);
         title.setText(productType.GetName());
 
-        TextView description = view.findViewById(R.id.TextViewProductTypeDescription);
-        description.setText(productType.GetDescription());
-
         ImageView imagen = view.findViewById(R.id.ImageViewProductType);
         imagen.setImageDrawable(productType.GetImage());
 
