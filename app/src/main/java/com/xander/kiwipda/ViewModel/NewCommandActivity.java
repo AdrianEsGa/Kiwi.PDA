@@ -27,6 +27,11 @@ public class NewCommandActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_command);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
         listViewNewCommandDetails = findViewById(R.id.ListViewNewCommandDetails);
         SetViewInfo();
         LoadListViewCommandDetails();
@@ -34,6 +39,7 @@ public class NewCommandActivity extends AppCompatActivity {
 
     public void btnAddProduct_Click(View target) {
         Intent myIntent = new Intent(this, ProductTypesActivity.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         this.startActivity(myIntent);
     }
 
@@ -103,6 +109,7 @@ public class NewCommandActivity extends AppCompatActivity {
 
         GlobalApp.Business.SelectedCommand = new Command();
         Intent myIntent = new Intent(this, TablesActivity.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         this.startActivity(myIntent);
     }
 }

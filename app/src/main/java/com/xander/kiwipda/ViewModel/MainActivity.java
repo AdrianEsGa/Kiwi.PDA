@@ -22,6 +22,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
         LoadData();
     }
 
@@ -35,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             LoadProducts();
 
             Intent myIntent = new Intent(this, EmployeesActivity.class);
+            myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             this.startActivity(myIntent);
         }
         catch (Exception ex){

@@ -25,6 +25,11 @@ public class CommandsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commands);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
         SetViewInfo();
         LoadListViewCommands();
         GlobalApp.Business.SelectedCommand = null;
@@ -54,6 +59,7 @@ public class CommandsActivity extends AppCompatActivity {
 
     private void OpenCommandDetailsActivity(){
         Intent myIntent = new Intent(this, CommandDetailsActivity.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         this.startActivity(myIntent);
     }
 
@@ -61,6 +67,7 @@ public class CommandsActivity extends AppCompatActivity {
 
         GlobalApp.Business.SelectedCommand  = new Command(GlobalApp.Business.SelectedEmployee.GetId(), GlobalApp.Business.SelectedTable.GetId());
         Intent myIntent = new Intent(this, ProductTypesActivity.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         this.startActivity(myIntent);
     }
 

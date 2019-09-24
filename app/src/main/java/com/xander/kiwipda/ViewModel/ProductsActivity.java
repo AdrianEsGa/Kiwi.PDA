@@ -29,6 +29,11 @@ public class ProductsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
         SetViewInfo();
         LoadListViewProducts();
         listViewProducts = findViewById(R.id.ListViewProducts);
@@ -88,6 +93,7 @@ public class ProductsActivity extends AppCompatActivity {
 
     public void btViewCommand_Click(View target) {
         Intent myIntent = new Intent(this, NewCommandActivity.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         this.startActivity(myIntent);
     }
 

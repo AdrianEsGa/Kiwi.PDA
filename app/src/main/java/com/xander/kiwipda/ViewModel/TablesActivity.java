@@ -20,6 +20,11 @@ public class TablesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tables);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
         SetViewInfo();
         LoadListViewTables();
     }
@@ -42,6 +47,7 @@ public class TablesActivity extends AppCompatActivity {
 
     private void OpenCommandsActivity(){
         Intent myIntent = new Intent(this, CommandsActivity.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         this.startActivity(myIntent);
     }
 

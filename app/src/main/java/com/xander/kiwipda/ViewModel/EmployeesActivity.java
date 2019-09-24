@@ -20,8 +20,14 @@ public class EmployeesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employees);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
         LoadListViewEmployees();
     }
+
 
     private void LoadListViewEmployees() {
 
@@ -41,6 +47,7 @@ public class EmployeesActivity extends AppCompatActivity {
 
     private void OpenTablesActivity(){
         Intent myIntent = new Intent(this, TablesActivity.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         this.startActivity(myIntent);
     }
 }

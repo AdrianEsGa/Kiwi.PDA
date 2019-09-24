@@ -18,12 +18,19 @@ import com.xander.kiwipda.ViewModel.Adapters.CommandDetailAdapter;
 public class CommandDetailsActivity extends AppCompatActivity {
 
     private CommandRepository commandRepository = new CommandRepository();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_command_detail);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
         SetViewInfo();
         LoadListViewCommandDetails();
+
     }
 
     private void LoadListViewCommandDetails() {

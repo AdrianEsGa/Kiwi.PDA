@@ -22,6 +22,11 @@ public class ProductTypesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_types);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
         SetViewInfo();
         LoadListViewProductTypes();
     }
@@ -44,6 +49,7 @@ public class ProductTypesActivity extends AppCompatActivity {
 
     private void OpenProductsActivity(){
         Intent myIntent = new Intent(this, ProductsActivity.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         this.startActivity(myIntent);
     }
 
