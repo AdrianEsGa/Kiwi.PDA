@@ -2,11 +2,9 @@ package com.xander.kiwipda.ViewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -18,6 +16,7 @@ import com.xander.kiwipda.ViewModel.Adapters.CommandDetailAdapter;
 public class CommandDetailsActivity extends AppCompatActivity {
 
     private CommandRepository commandRepository = new CommandRepository();
+    private ListView listViewCommandDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +29,12 @@ public class CommandDetailsActivity extends AppCompatActivity {
         super.onResume();
         SetViewInfo();
         LoadListViewCommandDetails();
-
     }
 
     private void LoadListViewCommandDetails() {
 
         commandRepository.GetDetails(GlobalApp.Business.SelectedCommand);
-        ListView listViewCommandDetails = findViewById(R.id.ListViewCommandDetails);
+        listViewCommandDetails = findViewById(R.id.ListViewCommandDetails);
         CommandDetailAdapter arrayAdapter = new CommandDetailAdapter (this, GlobalApp.Business.SelectedCommand.GetDetails(), false);
         listViewCommandDetails.setAdapter(arrayAdapter);
 
@@ -47,9 +45,9 @@ public class CommandDetailsActivity extends AppCompatActivity {
             }
         });
     }
+
     private void SetViewInfo(){
         TextView textViewCommandDetailsInfo = findViewById(R.id.TextViewCommandDetailsInfo);
         textViewCommandDetailsInfo.setText(GlobalApp.Business.SelectedEmployee.GetName() + " / " + GlobalApp.Business.SelectedTable.GetName() + " / " + GlobalApp.Business.SelectedCommand.GetName());
     }
-
 }

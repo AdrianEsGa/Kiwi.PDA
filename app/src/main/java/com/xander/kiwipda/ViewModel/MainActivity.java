@@ -98,6 +98,5 @@ public class MainActivity extends AppCompatActivity {
 
         ProductsRepository productsRepository = new ProductsRepository();
         GlobalApp.Business.Products = productsRepository.GetAllActive();
-
     }
 }

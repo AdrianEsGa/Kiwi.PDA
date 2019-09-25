@@ -28,7 +28,6 @@ public class EmployeesActivity extends AppCompatActivity {
         LoadListViewEmployees();
     }
 
-
     private void LoadListViewEmployees() {
 
         ListView listViewEmployees = findViewById(R.id.ListViewEmployees);
