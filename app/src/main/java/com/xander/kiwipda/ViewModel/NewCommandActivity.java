@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,8 +34,18 @@ public class NewCommandActivity extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         listViewNewCommandDetails = findViewById(R.id.ListViewNewCommandDetails);
-        SetViewInfo();
         LoadListViewCommandDetails();
+        SetViewInfo();
+    }
+
+    private void SetControlsState() {
+        Button btnFinalizeCommand = findViewById(R.id.BtnFinalizeCommnad);
+        if(GlobalApp.Business.SelectedCommand.GetDetails().size() > 0){
+            btnFinalizeCommand.setVisibility(View.VISIBLE);
+        }
+        else {
+            btnFinalizeCommand.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void btnAddProduct_Click(View target) {
@@ -54,6 +65,7 @@ public class NewCommandActivity extends AppCompatActivity {
         ListView listViewNewCommandDetails = findViewById(R.id.ListViewNewCommandDetails);
         CommandDetailAdapter arrayAdapter = new CommandDetailAdapter (this, GlobalApp.Business.SelectedCommand.GetDetails(), true);
         listViewNewCommandDetails.setAdapter(arrayAdapter);
+        SetControlsState();
 
         listViewNewCommandDetails.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

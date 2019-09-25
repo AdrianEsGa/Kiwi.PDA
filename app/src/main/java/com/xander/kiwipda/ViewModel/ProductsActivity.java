@@ -149,5 +149,4 @@ public class ProductsActivity extends AppCompatActivity {
 
       return newQuantity;
     }
-
 }

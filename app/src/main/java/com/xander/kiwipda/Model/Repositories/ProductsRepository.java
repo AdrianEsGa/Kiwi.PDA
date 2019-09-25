@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import com.xander.kiwipda.Database;
 import com.xander.kiwipda.Model.Entities.Product;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,12 +18,17 @@ public class ProductsRepository {
     public Product GetById(int id){
 
         Product product = new Product();
-        Statement command;
+        Statement commandSql = null;
+        Connection connectionSql = null;
+        ResultSet reader = null;
+
         try {
 
-            command = Database.SQLServer.Connect().createStatement();
+            connectionSql = Database.SQLServer.Connect();
+            commandSql = connectionSql.createStatement();
+
             String strSQL = "SELECT Id, Name, Type, Image FROM Products WHERE Id = " + id;
-            ResultSet reader = command.executeQuery(strSQL);
+            reader = commandSql.executeQuery(strSQL);
 
             while (reader.next()) {
                 product = new Product(reader.getInt("Id"), reader.getString("Name"),reader.getInt("Type"), Drawable.createFromStream(reader.getBinaryStream("Image"),""));
@@ -31,6 +37,11 @@ public class ProductsRepository {
         } catch (SQLException e) {
 
         }
+        finally {
+            try { reader.close(); } catch (Exception e) { /* ignored */ }
+            try { commandSql.close(); } catch (Exception e) { /* ignored */ }
+            try { connectionSql.close(); } catch (Exception e) { /* ignored */ }
+        }
 
         return product;
     }
@@ -38,12 +49,17 @@ public class ProductsRepository {
     public ArrayList<Product> GetAllActive(){
 
         ArrayList<Product> products = new ArrayList<Product>();
-        Statement command;
+        Statement commandSql = null;
+        Connection connectionSql = null;
+        ResultSet reader = null;
+
         try {
 
-            command = Database.SQLServer.Connect().createStatement();
-            String strSQL = "SELECT Id, Name, Type, Image FROM Products";
-            ResultSet reader = command.executeQuery(strSQL);
+            connectionSql = Database.SQLServer.Connect();
+            commandSql = connectionSql.createStatement();
+
+            String strSQL = "SELECT Id, Name, Type, Image FROM Products WHERE Active = 1";
+            reader = commandSql.executeQuery(strSQL);
 
             while (reader.next()) {
                 Product product = new Product(reader.getInt("Id"), reader.getString("Name"),reader.getInt("Type"), Drawable.createFromStream(reader.getBinaryStream("Image"),""));
@@ -52,6 +68,11 @@ public class ProductsRepository {
 
         } catch (SQLException e) {
 
+        }
+        finally {
+            try { reader.close(); } catch (Exception e) { /* ignored */ }
+            try { commandSql.close(); } catch (Exception e) { /* ignored */ }
+            try { connectionSql.close(); } catch (Exception e) { /* ignored */ }
         }
         return products;
     }

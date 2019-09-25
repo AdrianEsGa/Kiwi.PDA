@@ -4,13 +4,12 @@ import android.graphics.drawable.Drawable;
 
 import com.xander.kiwipda.Database;
 import com.xander.kiwipda.Model.Entities.Employee;
-import com.xander.kiwipda.R;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 public class EmployeesRepository {
 
@@ -19,12 +18,15 @@ public class EmployeesRepository {
     public ArrayList<Employee> GetAllActive(){
 
         ArrayList<Employee> employees = new ArrayList<Employee>();
-        Statement command;
-        try {
+        Statement commandSql = null;
+        Connection connectionSql = null;
+        ResultSet reader = null;
 
-            command = Database.SQLServer.Connect().createStatement();
-            String strSQL = "Select Id, Name, Image From Employees";
-            ResultSet reader = command.executeQuery(strSQL);
+        try {
+            connectionSql = Database.SQLServer.Connect();
+            commandSql = connectionSql.createStatement();
+            String strSQL = "Select Id, Name, Image From Employees WHERE Active = 1";
+            reader = commandSql.executeQuery(strSQL);
 
             while (reader.next()) {
                 Employee employee = new Employee(reader.getInt("Id"), reader.getString("Name"), Drawable.createFromStream(reader.getBinaryStream("Image"),""));
@@ -33,6 +35,11 @@ public class EmployeesRepository {
 
         } catch (SQLException e) {
 
+        }
+        finally {
+            try { reader.close(); } catch (Exception e) { /* ignored */ }
+            try { commandSql.close(); } catch (Exception e) { /* ignored */ }
+            try { connectionSql.close(); } catch (Exception e) { /* ignored */ }
         }
         return employees;
     }

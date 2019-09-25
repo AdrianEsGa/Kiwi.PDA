@@ -3,6 +3,7 @@ package com.xander.kiwipda.Model.Repositories;
 import com.xander.kiwipda.Database;
 import com.xander.kiwipda.Model.Entities.Table;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,12 +16,16 @@ public class TablesRepository {
     public ArrayList<Table> GetAllActive(){
 
         ArrayList<Table> tables = new ArrayList<Table>();
-        Statement command;
+        Statement commandSql = null;
+        Connection connectionSql = null;
+        ResultSet reader = null;
+
         try {
 
-            command = Database.SQLServer.Connect().createStatement();
-            String strSQL = "Select Id, Name From BarTables";
-            ResultSet reader = command.executeQuery(strSQL);
+            connectionSql = Database.SQLServer.Connect();
+            commandSql = connectionSql.createStatement();
+            String strSQL = "Select Id, Name From BarTables WHERE Active = 1 ORDER BY Code";
+            reader = commandSql.executeQuery(strSQL);
 
             while (reader.next()) {
                 Table table = new Table(reader.getInt("Id"), reader.getString("Name") ,null);
@@ -30,6 +35,12 @@ public class TablesRepository {
         } catch (SQLException e) {
 
         }
+        finally {
+            try { reader.close(); } catch (Exception e) { /* ignored */ }
+            try { commandSql.close(); } catch (Exception e) { /* ignored */ }
+            try { connectionSql.close(); } catch (Exception e) { /* ignored */ }
+        }
+
         return tables;
     }
 }
