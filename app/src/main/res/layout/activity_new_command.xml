@@ -21,12 +21,12 @@
         <ListView
             android:id="@+id/ListViewNewCommandDetails"
             android:layout_width="match_parent"
-            android:layout_height="427dp" />
+            android:layout_height="409dp" />
 
         <LinearLayout
             android:id="@+id/PanelNewCommandButtons"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="288dp"
             android:orientation="horizontal">
 
             <Button

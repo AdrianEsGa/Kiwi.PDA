@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/ImageViewProduct"
-        android:layout_width="70dp"
-        android:layout_height="62dp"
+        android:layout_width="61dp"
+        android:layout_height="61dp"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="10dp"
@@ -23,7 +23,7 @@
     <TextView
         android:id="@+id/TextViewProductName"
         android:layout_width="159dp"
-        android:layout_height="61dp"
+        android:layout_height="56dp"
         android:layout_alignParentTop="true"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="2dp"
@@ -49,7 +49,9 @@
         android:layout_toRightOf="@+id/TextViewProductName"
         android:focusable="false"
         android:onClick="btnDecrement_Click"
-        android:text="-" />
+        android:text="-"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/TextViewQuantity"
@@ -62,7 +64,9 @@
         android:layout_marginBottom="14dp"
         android:layout_toEndOf="@+id/btnDecrement"
         android:layout_toRightOf="@+id/btnDecrement"
-        android:text="0" />
+        android:text="0"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnIncrement"
@@ -78,6 +82,7 @@
         android:layout_toRightOf="@+id/TextViewQuantity"
         android:focusable="false"
         android:onClick="btnIncrement_Click"
-        android:text="+" />
+        android:text="+"
+        android:textStyle="bold" />
 
 </LinearLayout>

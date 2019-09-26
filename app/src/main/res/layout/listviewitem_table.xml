@@ -1,29 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_light">
 
-    <TextView
-        android:id="@+id/TextViewTableName"
-        android:layout_width="285dp"
-        android:layout_height="62dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="10dp"
-        android:layout_toEndOf="@+id/ImageViewTable"
-        android:layout_toRightOf="@+id/ImageViewTable"
-        android:gravity="fill|left"
-        android:text="Nombre"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="21sp" />
-
     <ImageView
         android:id="@+id/ImageViewTable"
-        android:layout_width="80dp"
-        android:layout_height="76dp"
+        android:layout_width="61dp"
+        android:layout_height="61dp"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="2dp"
@@ -33,4 +18,19 @@
         android:maxWidth="74dp"
         android:maxHeight="35dp" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/TextViewTableName"
+        android:layout_width="285dp"
+        android:layout_height="54dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@+id/ImageViewTable"
+        android:layout_toRightOf="@+id/ImageViewTable"
+        android:gravity="fill|left"
+        android:text="Nombre"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="21sp" />
+
+</LinearLayout>
