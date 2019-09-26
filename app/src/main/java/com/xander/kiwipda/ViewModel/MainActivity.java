@@ -27,7 +27,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
-        LoadData();
+
+        new Thread(new Runnable() {
+            public void run() {
+                LoadData();
+            }
+        }).start();
     }
 
     private void LoadData(){
