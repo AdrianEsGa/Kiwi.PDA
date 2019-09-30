@@ -3,6 +3,7 @@ package com.xander.kiwipda;
 import android.app.Activity;
 import android.widget.Toast;
 
+import com.xander.kiwipda.Configuration.Preference;
 import com.xander.kiwipda.Model.Entities.Employee;
 import com.xander.kiwipda.Model.Entities.Command;
 import com.xander.kiwipda.Model.Entities.Product;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 public class GlobalApp {
 
     public static class Business {
+
+        public static Preference DbConfiguration;
 
         public static ArrayList<Employee> Employees;
         public static ArrayList<Table> Tables;

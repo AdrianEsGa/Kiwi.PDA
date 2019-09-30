@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.xander.kiwipda.Configuration.Preference;
+import com.xander.kiwipda.Configuration.PreferencesController;
 import com.xander.kiwipda.GlobalApp;
 import com.xander.kiwipda.Model.Entities.Employee;
 import com.xander.kiwipda.Model.Entities.ProductType;
@@ -18,6 +20,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    private PreferencesController preferencesController = new PreferencesController();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,11 +32,26 @@ public class MainActivity extends AppCompatActivity {
     public void onResume(){
         super.onResume();
 
-        new Thread(new Runnable() {
-            public void run() {
-                LoadData();
-            }
-        }).start();
+        GlobalApp.Business.DbConfiguration =  preferencesController.LoadPreferents(this);
+
+        if(GlobalApp.Business.DbConfiguration.ServerName == "")
+        {
+            ShowConfigurationView();
+        }
+        else {
+            new Thread(new Runnable() {
+                public void run() {
+                    LoadData();
+                }
+            }).start();
+        }
+    }
+
+    private void ShowConfigurationView(){
+        Intent myIntent = new Intent(this, ConfigurationActivity.class);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        this.startActivity(myIntent);
     }
 
     private void LoadData(){
@@ -50,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             this.startActivity(myIntent);
         }
         catch (Exception ex){
-              GlobalApp.Messages.ShowToast(this, ex.getMessage());
+            ShowConfigurationView();
         }
     }
 
@@ -91,12 +110,12 @@ public class MainActivity extends AppCompatActivity {
         GlobalApp.Business.ProductTypes.add(copas);
         GlobalApp.Business.ProductTypes.add(refrescos);
         GlobalApp.Business.ProductTypes.add(cervezas);
-        GlobalApp.Business.ProductTypes.add(varios);
         GlobalApp.Business.ProductTypes.add(cafes);
-        GlobalApp.Business.ProductTypes.add(tes);
         GlobalApp.Business.ProductTypes.add(cocktails);
-        GlobalApp.Business.ProductTypes.add(infusiones);
         GlobalApp.Business.ProductTypes.add(vinos);
+        GlobalApp.Business.ProductTypes.add(tes);
+        GlobalApp.Business.ProductTypes.add(infusiones);
+        GlobalApp.Business.ProductTypes.add(varios);
     }
 
     private void LoadProducts() {

@@ -125,5 +125,7 @@ public class NewCommandActivity extends AppCompatActivity {
         myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         this.startActivity(myIntent);
+
+        GlobalApp.Messages.ShowToast(this, "Comanda finalizada correctamente.");
     }
 }

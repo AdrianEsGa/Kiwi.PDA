@@ -4,25 +4,26 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xander.kiwipda.GlobalApp;
 import com.xander.kiwipda.Model.Entities.CommandDetail;
-import com.xander.kiwipda.Model.Entities.Employee;
 import com.xander.kiwipda.Model.Entities.Product;
-import com.xander.kiwipda.Model.Entities.ProductType;
 import com.xander.kiwipda.R;
 import com.xander.kiwipda.ViewModel.Adapters.ProductAdapter;
-import com.xander.kiwipda.ViewModel.Adapters.ProductTypeAdapter;
 
 import java.util.ArrayList;
 
 public class ProductsActivity extends AppCompatActivity {
 
+    private EditText textSearch;
     private ListView listViewProducts;
 
     @Override
@@ -36,7 +37,31 @@ public class ProductsActivity extends AppCompatActivity {
         super.onResume();
         listViewProducts = findViewById(R.id.ListViewProducts);
         SetViewInfo();
+        SetTextSearchHandler();
         LoadListViewProducts();
+    }
+
+    private void SetTextSearchHandler() {
+        textSearch = findViewById(R.id.TextSearch);
+
+        textSearch.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                LoadListViewProducts();
+            }
+        });
     }
 
     private void LoadListViewProducts() {
@@ -48,7 +73,17 @@ public class ProductsActivity extends AppCompatActivity {
 
             if(product.GetType() == GlobalApp.Business.SelectedProductType.GetId())
             {
-                productsByType.add(product);
+                if(textSearch.getText().toString() != "") {
+                    if (product.GetName().toUpperCase().contains(textSearch.getText().toString().toUpperCase())) {
+                        productsByType.add(product);
+                    }
+                    else {
+                        continue;
+                    }
+                }
+                else {
+                    productsByType.add(product);
+                }
 
                 for (CommandDetail commandDetail: GlobalApp.Business.SelectedCommand.GetDetails()) {
 
@@ -68,6 +103,7 @@ public class ProductsActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     public void btnDecrement_Click(View view) {

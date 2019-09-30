@@ -6,11 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xander.kiwipda.GlobalApp;
 import com.xander.kiwipda.Model.Entities.Command;
+import com.xander.kiwipda.Model.Entities.CommandDetail;
+import com.xander.kiwipda.Model.Entities.CommandStatus;
+import com.xander.kiwipda.Model.Entities.Product;
 import com.xander.kiwipda.Model.Repositories.CommandRepository;
 import com.xander.kiwipda.R;
 import com.xander.kiwipda.ViewModel.Adapters.CommandAdapter;
@@ -19,6 +23,7 @@ import java.util.ArrayList;
 
 public class CommandsActivity extends AppCompatActivity {
 
+    private ListView listViewCommands;
     private CommandRepository commandRepository = new CommandRepository();
 
     @Override
@@ -30,6 +35,7 @@ public class CommandsActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+        listViewCommands = findViewById(R.id.ListViewCommands);
         SetViewInfo();
         LoadListViewCommands();
         GlobalApp.Business.SelectedCommand = null;
@@ -43,7 +49,6 @@ public class CommandsActivity extends AppCompatActivity {
             command.SetImage(getResources().getDrawable(R.drawable.defaultcommand));
         }
 
-        ListView listViewCommands = findViewById(R.id.ListViewCommands);
         CommandAdapter arrayAdapter = new CommandAdapter (this, commands);
         listViewCommands.setAdapter(arrayAdapter);
 
@@ -76,5 +81,13 @@ public class CommandsActivity extends AppCompatActivity {
     private void SetViewInfo(){
         TextView textViewEmployee = findViewById(R.id.TextViewEmployee);
         textViewEmployee.setText(GlobalApp.Business.SelectedEmployee.GetName() + " / " + GlobalApp.Business.SelectedTable.GetName());
+    }
+
+    public void BtnChangeCommandToServed_Click(View view) {
+        int position = listViewCommands.getPositionForView((View) view.getParent());
+        Command command = (Command) listViewCommands.getItemAtPosition(position);
+        command.SetStatus(CommandStatus.Servida);
+        commandRepository.Update(command);
+        LoadListViewCommands();
     }
 }

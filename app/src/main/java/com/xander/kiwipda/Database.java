@@ -11,12 +11,12 @@ public class Database {
     public static class SQLServer {
 
         private static final String LOG = "DEBUG";
-        private static String ip = "adrianpc";
+        private static String ip = GlobalApp.Business.DbConfiguration.ServerName;
         private static String port = "1433";
         private static String classs = "net.sourceforge.jtds.jdbc.Driver";
-        private static String db = "KiwiTPVNoJoke";
-        private static String un = "sa";
-        private static String password = "1234";
+        private static String db = GlobalApp.Business.DbConfiguration.Database;
+        private static String un = GlobalApp.Business.DbConfiguration.User;
+        private static String password = GlobalApp.Business.DbConfiguration.Password;
         private static String message = "";
 
         public static Connection Connect() {

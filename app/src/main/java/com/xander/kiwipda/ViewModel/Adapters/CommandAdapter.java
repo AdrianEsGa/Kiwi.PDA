@@ -6,10 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xander.kiwipda.Model.Entities.Command;
+import com.xander.kiwipda.Model.Entities.CommandStatus;
 import com.xander.kiwipda.R;
 
 import java.util.ArrayList;
@@ -69,6 +71,14 @@ public class CommandAdapter extends BaseAdapter {
 
         ImageView imagen = view.findViewById(R.id.ImageViewCommand);
         imagen.setImageDrawable(command.GetImage());
+
+        Button buttonChangeToServed = view.findViewById(R.id.BtnChangeCommandToServed);
+        if (command.GetStatus() == CommandStatus.Finalizada){
+            buttonChangeToServed.setVisibility(View.VISIBLE);
+        }
+        else {
+            buttonChangeToServed.setVisibility(View.INVISIBLE);
+        }
 
         return view;
     }

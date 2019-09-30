@@ -28,7 +28,7 @@ public class CommandRepository {
 
             connectionSql = Database.SQLServer.Connect();
             commandSql = connectionSql.createStatement();
-            String strSQL = "SELECT Id, EmployeeId, BarTableId, StationId, Date, Status FROM Commands WHERE EmployeeId = " + employeeId + " AND BarTableId = " + tableId;
+            String strSQL = "SELECT Id, EmployeeId, BarTableId, StationId, Date, Status FROM Commands WHERE Status <> 3 AND EmployeeId = " + employeeId + " AND BarTableId = " + tableId;
             reader = commandSql.executeQuery(strSQL);
 
             while (reader.next()) {
@@ -115,6 +115,29 @@ public class CommandRepository {
 
             connectionSql.commit();
             connectionSql.setAutoCommit(true);
+
+        } catch (SQLException e) {
+
+        }
+        finally {
+            try { reader.close(); } catch (Exception e) { /* ignored */ }
+            try { commandSql.close(); } catch (Exception e) { /* ignored */ }
+            try { connectionSql.close(); } catch (Exception e) { /* ignored */ }
+        }
+    }
+
+    public void Update(Command command){
+
+        Statement  commandSql = null;
+        Connection connectionSql = null;
+        ResultSet reader = null;
+
+        try {
+
+            connectionSql = Database.SQLServer.Connect();
+            commandSql = connectionSql.createStatement();
+            String strSQL = "UPDATE Commands SET Status = " + command.GetStatus().ordinal() + " WHERE Id = " + command.GetId();
+            commandSql.executeUpdate(strSQL);
 
         } catch (SQLException e) {
 

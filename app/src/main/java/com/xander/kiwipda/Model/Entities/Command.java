@@ -19,7 +19,7 @@ public class Command {
         _details = new ArrayList<>();
     }
 
-    public Command(int id, int employeeId, int tableId, int stationId, Date date, int status ){
+    public Command(int id, int employeeId, int tableId, int stationId, Date date, int status){
         _id = id;
         _employeeId = employeeId;
         _tableId = tableId;
@@ -46,6 +46,12 @@ public class Command {
     public String GetDescription(){
         return _status.toString();
     }
+
+    public CommandStatus GetStatus(){
+        return _status;
+    }
+
+    public void SetStatus(CommandStatus status){ _status = status; }
 
     public Drawable GetImage(){
         return _image;

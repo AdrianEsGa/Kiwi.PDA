@@ -6,9 +6,9 @@ import android.content.SharedPreferences;
 import static android.content.Context.MODE_PRIVATE;
 
 public class PreferencesController {
-    private static final String MY_PREFS_NAME = "FoxTouchPreferences";
+    private static final String MY_PREFS_NAME = "KiwiPDAPreferences";
 
-    public static void SavePreferents(Context context, Preference preferences, boolean mostrarAviso) {
+    public static void SavePreferents(Context context, Preference preferences) {
         SharedPreferences.Editor editor = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
         editor.putString("servername",preferences.ServerName);
         editor.putString("database",  preferences.Database);
