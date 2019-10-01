@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         ProductType copas = new ProductType(1, "Copas", getResources().getDrawable(R.drawable.copas));
         ProductType refrescos = new ProductType(2, "Refrescos", getResources().getDrawable(R.drawable.refrescos));
         ProductType cervezas = new ProductType(3, "Cervezas", getResources().getDrawable(R.drawable.cervezas));
-        ProductType varios = new ProductType(4, "Varios", null);
+        ProductType varios = new ProductType(4, "Varios",  getResources().getDrawable(R.drawable.varios));
         ProductType cafes = new ProductType(6, "Cafés", getResources().getDrawable(R.drawable.cafes));
         ProductType tes = new ProductType(7, "Tés", getResources().getDrawable(R.drawable.tes));
         ProductType cocktails = new ProductType(8, "Cocktails", getResources().getDrawable(R.drawable.cocktails));

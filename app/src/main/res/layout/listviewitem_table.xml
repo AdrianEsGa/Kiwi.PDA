@@ -21,7 +21,7 @@
     <TextView
         android:id="@+id/TextViewTableName"
         android:layout_width="285dp"
-        android:layout_height="54dp"
+        android:layout_height="61dp"
         android:layout_alignParentTop="true"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"

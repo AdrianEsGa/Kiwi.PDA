@@ -19,6 +19,7 @@
             android:layout_height="34dp"
             android:gravity="center"
             android:text="TextView"
+            android:textStyle="bold"
             tools:text="TextView" />
 
         <ListView

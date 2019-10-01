@@ -19,7 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:gravity="center"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/TextSearch"
@@ -32,14 +33,14 @@
         <ListView
             android:id="@+id/ListViewProducts"
             android:layout_width="match_parent"
-            android:layout_height="371dp">
+            android:layout_height="390dp">
 
         </ListView>
 
         <Button
             android:id="@+id/BtnViewCommand"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="272dp"
             android:gravity="center|top"
             android:onClick="btViewCommand_Click"
             android:text="Ver comanda" />

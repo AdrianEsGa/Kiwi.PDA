@@ -19,7 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="34dp"
             android:gravity="center"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textStyle="bold" />
 
         <ListView
             android:id="@+id/ListViewTables"

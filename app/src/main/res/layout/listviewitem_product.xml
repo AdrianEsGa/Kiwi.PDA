@@ -23,7 +23,7 @@
     <TextView
         android:id="@+id/TextViewProductName"
         android:layout_width="159dp"
-        android:layout_height="56dp"
+        android:layout_height="61dp"
         android:layout_alignParentTop="true"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="2dp"
