@@ -66,7 +66,13 @@ public class CommandDetailAdapter extends BaseAdapter {
         CommandDetail commandDetail = items.get(position);
 
         TextView title = view.findViewById(R.id.TextViewProductName);
-        title.setText(commandDetail.GetProduct().GetName());
+
+        if(commandDetail.GetCombinedProduct() == null) {
+            title.setText(commandDetail.GetProduct().GetName());
+        }
+        else {
+            title.setText(commandDetail.GetProduct().GetName() + " - " + commandDetail.GetCombinedProduct().GetName());
+        }
 
         TextView quantity = view.findViewById(R.id.TextViewQuantity);
         quantity.setText(String.valueOf(commandDetail.GetQuantity()));

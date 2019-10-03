@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,10 +20,12 @@ public class ProductAdapter extends BaseAdapter {
 
     protected Activity activity;
     protected ArrayList<Product> items;
+    protected boolean showButtons;
 
-    public ProductAdapter(Activity activity, ArrayList<Product> items) {
+    public ProductAdapter(Activity activity, ArrayList<Product> items, boolean showButtons) {
         this.activity = activity;
         this.items = items;
+        this.showButtons = showButtons;
     }
 
     @Override
@@ -70,6 +73,21 @@ public class ProductAdapter extends BaseAdapter {
 
         ImageView imagen = view.findViewById(R.id.ImageViewProduct);
         imagen.setImageDrawable(product.GetImage());
+
+        Button btnDecrement = view.findViewById(R.id.btnDecrement);
+        Button btnIncrement = view.findViewById(R.id.btnIncrement);
+        TextView textViewQuantity = view.findViewById(R.id.TextViewQuantity);
+
+        if (!showButtons){
+            btnDecrement.setVisibility(View.INVISIBLE);
+            btnIncrement.setVisibility(View.INVISIBLE);
+            textViewQuantity.setVisibility(View.INVISIBLE);
+        }
+        else {
+            btnDecrement.setVisibility(View.VISIBLE);
+            btnIncrement.setVisibility(View.VISIBLE);
+            textViewQuantity.setVisibility(View.VISIBLE);
+        }
 
         return view;
     }

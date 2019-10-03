@@ -15,7 +15,9 @@ import android.widget.TextView;
 
 import com.xander.kiwipda.GlobalApp;
 import com.xander.kiwipda.Model.Entities.CommandDetail;
+import com.xander.kiwipda.Model.Entities.Employee;
 import com.xander.kiwipda.Model.Entities.Product;
+import com.xander.kiwipda.Model.Entities.ProductType;
 import com.xander.kiwipda.R;
 import com.xander.kiwipda.ViewModel.Adapters.ProductAdapter;
 
@@ -23,8 +25,13 @@ import java.util.ArrayList;
 
 public class ProductsActivity extends AppCompatActivity {
 
+    private Product selectedProduct;
+    private Product combinedProduct;
     private EditText textSearch;
     private ListView listViewProducts;
+    private int selectedProductTypeId;
+    private boolean selectCombinedProductMode;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +45,8 @@ public class ProductsActivity extends AppCompatActivity {
         listViewProducts = findViewById(R.id.ListViewProducts);
         SetViewInfo();
         SetTextSearchHandler();
-        LoadListViewProducts();
+        selectedProductTypeId = GlobalApp.Business.SelectedProductType.GetId();
+        LoadListViewProducts(true);
     }
 
     private void SetTextSearchHandler() {
@@ -59,19 +67,19 @@ public class ProductsActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
-                LoadListViewProducts();
+                LoadListViewProducts(!selectCombinedProductMode);
             }
         });
     }
 
-    private void LoadListViewProducts() {
+    private void LoadListViewProducts(boolean showButtons) {
 
         ArrayList<Product> productsByType = new ArrayList<>();
         for (Product product: GlobalApp.Business.Products) {
 
             product.SetQuantity(0);
 
-            if(product.GetType() == GlobalApp.Business.SelectedProductType.GetId())
+            if(product.GetType() == selectedProductTypeId)
             {
                 if(textSearch.getText().toString() != "") {
                     if (product.GetName().toUpperCase().contains(textSearch.getText().toString().toUpperCase())) {
@@ -88,22 +96,70 @@ public class ProductsActivity extends AppCompatActivity {
                 for (CommandDetail commandDetail: GlobalApp.Business.SelectedCommand.GetDetails()) {
 
                     if(product.GetId() == commandDetail.GetProduct().GetId()){
-                        product.SetQuantity(commandDetail.GetQuantity());
+
+                        product.SetQuantity(commandDetail.GetQuantity() + product.GetQuantity());
                     }
                 }
             }
         }
 
-        ProductAdapter arrayAdapter = new ProductAdapter (this, productsByType);
+        ProductAdapter arrayAdapter = new ProductAdapter (this, productsByType, showButtons);
         listViewProducts.setAdapter(arrayAdapter);
 
         listViewProducts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
 
+               if (selectCombinedProductMode) {
+
+                   int newQuantity = 1;
+
+                   boolean existProductWithConmbined = false;
+                   CommandDetail existingCommandDetail = null;
+                   combinedProduct = (Product) adapter.getItemAtPosition(position);
+
+
+                   for (CommandDetail commandDetail : GlobalApp.Business.SelectedCommand.GetDetails()) {
+                       if (selectedProduct.GetId() == commandDetail.GetProduct().GetId()) {
+
+                           existingCommandDetail = commandDetail;
+
+                           if (commandDetail.GetCombinedProduct() == null) {
+                               commandDetail.SetCombinedProduct(combinedProduct);
+                               existProductWithConmbined = true;
+                               break;
+
+                           } else {
+                               if (combinedProduct.GetId() == commandDetail.GetCombinedProduct().GetId()) {
+                                   existProductWithConmbined = true;
+                                   break;
+                               }
+                           }
+                       }
+                   }
+
+                   if(!existProductWithConmbined){
+                       CommandDetail newCommandDetail = new CommandDetail(selectedProduct, combinedProduct, 1);
+
+                       if (existingCommandDetail.GetQuantity() == 1) {
+                           GlobalApp.Business.SelectedCommand.GetDetails().remove(existingCommandDetail);
+                       } else {
+                           existingCommandDetail.SetQuantity(existingCommandDetail.GetQuantity() - 1);
+                       }
+
+                       GlobalApp.Business.SelectedCommand.GetDetails().add(newCommandDetail);
+                   }
+                   else {
+                       newQuantity = existingCommandDetail.GetQuantity() + 1;
+                       existingCommandDetail.SetQuantity(newQuantity);
+                   }
+
+                   selectCombinedProductMode = false;
+                   selectedProductTypeId = GlobalApp.Business.SelectedProductType.GetId();
+                   textSearch.setText("");
+               }
             }
         });
-
     }
 
     public void btnDecrement_Click(View view) {
@@ -168,21 +224,34 @@ public class ProductsActivity extends AppCompatActivity {
         boolean isNewElement = true;
         int newQuantity = 1;
 
-        for (CommandDetail commandDetail : GlobalApp.Business.SelectedCommand.GetDetails()) {
+        selectedProduct = product;
 
-            if (product.GetId() == commandDetail.GetProduct().GetId()) {
-                newQuantity = commandDetail.GetQuantity() + 1;
-                commandDetail.SetQuantity(newQuantity);
-                isNewElement = false;
-                break;
+        if(product.GetType() == 1){
+            selectCombinedProductMode = true;
+            SelectCombinedProduct();
+        }
+        else {
+
+            for (CommandDetail commandDetail : GlobalApp.Business.SelectedCommand.GetDetails()) {
+                if (product.GetId() == commandDetail.GetProduct().GetId()) {
+                    newQuantity = commandDetail.GetQuantity() + 1;
+                    commandDetail.SetQuantity(newQuantity);
+                    isNewElement = false;
+                    break;
+                }
+            }
+
+            if (isNewElement) {
+                CommandDetail commandDetail = new CommandDetail(product, newQuantity);
+                GlobalApp.Business.SelectedCommand.GetDetails().add(commandDetail);
             }
         }
 
-        if(isNewElement){
-            CommandDetail commandDetail = new CommandDetail(product, newQuantity);
-            GlobalApp.Business.SelectedCommand.GetDetails().add(commandDetail);
-        }
-
       return newQuantity;
+    }
+
+    private void SelectCombinedProduct(){
+        selectedProductTypeId = 2;
+        LoadListViewProducts(false);
     }
 }

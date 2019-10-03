@@ -107,8 +107,15 @@ public class CommandRepository {
                 commandId = reader.getInt(1);
 
             for (CommandDetail commandDetail: command.GetDetails()) {
-                 strSQL = "INSERT INTO CommandDetails (CommandId, ProductId, Quantity)\n" +
-                         "VALUES (" + commandId + "," + commandDetail.GetProduct().GetId() + "," + commandDetail.GetQuantity() + ")";
+
+                if(commandDetail.GetCombinedProduct() == null){
+                    strSQL = "INSERT INTO CommandDetails (CommandId, ProductId, Quantity)\n" +
+                            "VALUES (" + commandId + "," + commandDetail.GetProduct().GetId() +  "," + commandDetail.GetQuantity() + ")";
+                }
+                else {
+                    strSQL = "INSERT INTO CommandDetails (CommandId, ProductId, CombinedProductId, Quantity)\n" +
+                            "VALUES (" + commandId + "," + commandDetail.GetProduct().GetId() + "," + commandDetail.GetCombinedProduct().GetId() + "," + commandDetail.GetQuantity() + ")";
+                }
 
                 commandSql.executeUpdate(strSQL);
             }

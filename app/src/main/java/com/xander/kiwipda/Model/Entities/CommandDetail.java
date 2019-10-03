@@ -6,7 +6,7 @@ public class CommandDetail {
     private int _commnadId;
     private Product _product;
     private int _quantity;
-    private int _combinatedProductId;
+    private Product _combinedProduct;
 
     public CommandDetail() {}
 
@@ -15,9 +15,21 @@ public class CommandDetail {
         _quantity = quantity;
     }
 
+    public CommandDetail(Product product, Product combinedProduct, int quantity){
+        _product = product;
+        _quantity = quantity;
+        _combinedProduct = combinedProduct;
+    }
+
     public Product GetProduct(){
         return _product;
     }
+
+    public Product GetCombinedProduct(){
+        return _combinedProduct;
+    }
+
+    public void SetCombinedProduct(Product combinedProduct){ _combinedProduct = combinedProduct; }
 
     public int GetQuantity(){
         return _quantity;
