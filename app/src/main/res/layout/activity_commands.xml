@@ -32,9 +32,11 @@
             android:id="@+id/BtnNewCommand"
             android:layout_width="match_parent"
             android:layout_height="272dp"
+            android:background="@color/colorPrimary"
             android:gravity="center|top"
             android:onClick="btnNewCommandView_Click"
-            android:text="Nueva Comanda" />
+            android:text="Nueva Comanda"
+            android:textColor="@color/colorBackgroud" />
 
     </LinearLayout>
 

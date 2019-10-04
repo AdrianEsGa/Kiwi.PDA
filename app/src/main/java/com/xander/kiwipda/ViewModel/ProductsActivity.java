@@ -110,54 +110,27 @@ public class ProductsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapter, View v, int position, long arg3) {
 
-               if (selectCombinedProductMode) {
+                if(selectCombinedProductMode) {
+                    boolean isNewElement = true;
 
-                   int newQuantity = 1;
+                    combinedProduct = (Product) adapter.getItemAtPosition(position);
 
-                   boolean existProductWithConmbined = false;
-                   CommandDetail existingCommandDetail = null;
-                   combinedProduct = (Product) adapter.getItemAtPosition(position);
+                    for (CommandDetail commandDetail : GlobalApp.Business.SelectedCommand.GetDetails()) {
+                        if (commandDetail.GetProduct().GetId() == selectedProduct.GetId() && commandDetail.GetCombinedProduct().GetId() == combinedProduct.GetId()) {
+                            isNewElement = false;
+                            commandDetail.SetQuantity(commandDetail.GetQuantity() + 1);
+                        }
+                    }
 
+                    if (isNewElement) {
+                        CommandDetail commandDetail = new CommandDetail(selectedProduct, combinedProduct, 1);
+                        GlobalApp.Business.SelectedCommand.GetDetails().add(commandDetail);
+                    }
 
-                   for (CommandDetail commandDetail : GlobalApp.Business.SelectedCommand.GetDetails()) {
-                       if (selectedProduct.GetId() == commandDetail.GetProduct().GetId()) {
-
-                           existingCommandDetail = commandDetail;
-
-                           if (commandDetail.GetCombinedProduct() == null) {
-                               commandDetail.SetCombinedProduct(combinedProduct);
-                               existProductWithConmbined = true;
-                               break;
-
-                           } else {
-                               if (combinedProduct.GetId() == commandDetail.GetCombinedProduct().GetId()) {
-                                   existProductWithConmbined = true;
-                                   break;
-                               }
-                           }
-                       }
-                   }
-
-                   if(!existProductWithConmbined){
-                       CommandDetail newCommandDetail = new CommandDetail(selectedProduct, combinedProduct, 1);
-
-                       if (existingCommandDetail.GetQuantity() == 1) {
-                           GlobalApp.Business.SelectedCommand.GetDetails().remove(existingCommandDetail);
-                       } else {
-                           existingCommandDetail.SetQuantity(existingCommandDetail.GetQuantity() - 1);
-                       }
-
-                       GlobalApp.Business.SelectedCommand.GetDetails().add(newCommandDetail);
-                   }
-                   else {
-                       newQuantity = existingCommandDetail.GetQuantity() + 1;
-                       existingCommandDetail.SetQuantity(newQuantity);
-                   }
-
-                   selectCombinedProductMode = false;
-                   selectedProductTypeId = GlobalApp.Business.SelectedProductType.GetId();
-                   textSearch.setText("");
-               }
+                    selectCombinedProductMode = false;
+                    selectedProductTypeId = GlobalApp.Business.SelectedProductType.GetId();
+                    textSearch.setText("");
+                }
             }
         });
     }
@@ -207,12 +180,18 @@ public class ProductsActivity extends AppCompatActivity {
 
                 if (newQuantity == 0) {
                     GlobalApp.Business.SelectedCommand.GetDetails().remove(commandDetail);
-                    product.SetQuantity(0);
                 }
                 else {
                     commandDetail.SetQuantity(newQuantity);
                 }
                 break;
+            }
+        }
+
+        newQuantity = 0;
+        for (CommandDetail commandDetail: GlobalApp.Business.SelectedCommand.GetDetails()) {
+            if(product.GetId() == commandDetail.GetProduct().GetId()){
+                newQuantity += commandDetail.GetQuantity();
             }
         }
 
@@ -228,7 +207,8 @@ public class ProductsActivity extends AppCompatActivity {
 
         if(product.GetType() == 1){
             selectCombinedProductMode = true;
-            SelectCombinedProduct();
+            selectedProductTypeId = 2;
+            LoadListViewProducts(false);
         }
         else {
 
@@ -250,8 +230,5 @@ public class ProductsActivity extends AppCompatActivity {
       return newQuantity;
     }
 
-    private void SelectCombinedProduct(){
-        selectedProductTypeId = 2;
-        LoadListViewProducts(false);
-    }
+
 }

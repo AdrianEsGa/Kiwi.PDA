@@ -30,7 +30,6 @@
         android:layout_marginTop="11dp"
         android:layout_toEndOf="@+id/ImageViewProduct"
         android:layout_toRightOf="@+id/ImageViewProduct"
-        android:layout_weight="1"
         android:gravity="center|fill"
         android:text="Nombre"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -47,9 +46,11 @@
         android:layout_marginBottom="5dp"
         android:layout_toEndOf="@+id/TextViewProductName"
         android:layout_toRightOf="@+id/TextViewProductName"
+        android:background="@color/colorDecrement"
         android:focusable="false"
         android:onClick="btnDecrement_Click"
         android:text="-"
+        android:textColor="@color/colorBackgroud"
         android:textSize="14sp"
         android:textStyle="bold" />
 
@@ -80,9 +81,11 @@
         android:layout_marginBottom="5dp"
         android:layout_toEndOf="@+id/TextViewQuantity"
         android:layout_toRightOf="@+id/TextViewQuantity"
+        android:background="@color/colorIncrement"
         android:focusable="false"
         android:onClick="btnIncrement_Click"
         android:text="+"
+        android:textColor="@color/colorBackgroud"
         android:textStyle="bold" />
 
 </LinearLayout>

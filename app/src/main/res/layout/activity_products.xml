@@ -41,9 +41,11 @@
             android:id="@+id/BtnViewCommand"
             android:layout_width="match_parent"
             android:layout_height="272dp"
+            android:background="@color/colorPrimary"
             android:gravity="center|top"
             android:onClick="btViewCommand_Click"
-            android:text="Ver comanda" />
+            android:text="Ver comanda"
+            android:textColor="@color/colorBackgroud" />
 
     </LinearLayout>
 
