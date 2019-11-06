@@ -50,6 +50,33 @@ public class CommandRepository {
         return commands;
     }
 
+    public boolean HasByEmployeeAndTable(int employeeId, int tableId){
+
+        Statement commandSql = null;
+        Connection connectionSql = null;
+        ResultSet reader = null;
+        boolean hasCommands = false;
+
+        try {
+
+            connectionSql = Database.SQLServer.Connect();
+            commandSql = connectionSql.createStatement();
+            String strSQL = "SELECT TOP 1 1 FROM Commands WHERE Status <> 3 AND EmployeeId = " + employeeId + " AND BarTableId = " + tableId;
+            reader = commandSql.executeQuery(strSQL);
+            hasCommands = reader.next();
+
+        } catch (SQLException e) {
+
+        }
+        finally {
+            try { reader.close(); } catch (Exception e) { /* ignored */ }
+            try { commandSql.close(); } catch (Exception e) { /* ignored */ }
+            try { connectionSql.close(); } catch (Exception e) { /* ignored */ }
+        }
+
+        return hasCommands;
+    }
+
     public void GetDetails(Command command){
 
         ProductsRepository productsRepository = new ProductsRepository();

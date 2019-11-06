@@ -31,6 +31,7 @@ public class ProductsActivity extends AppCompatActivity {
     private ListView listViewProducts;
     private int selectedProductTypeId;
     private boolean selectCombinedProductMode;
+    private ArrayList<Product> productsByType;
 
 
     @Override
@@ -74,7 +75,7 @@ public class ProductsActivity extends AppCompatActivity {
 
     private void LoadListViewProducts(boolean showButtons) {
 
-        ArrayList<Product> productsByType = new ArrayList<>();
+        productsByType = new ArrayList<>();
         for (Product product: GlobalApp.Business.Products) {
 
             product.SetQuantity(0);
@@ -180,9 +181,11 @@ public class ProductsActivity extends AppCompatActivity {
 
                 if (newQuantity == 0) {
                     GlobalApp.Business.SelectedCommand.GetDetails().remove(commandDetail);
+                    SetQuantityInFilterList(product.GetId(), newQuantity);
                 }
                 else {
                     commandDetail.SetQuantity(newQuantity);
+                    SetQuantityInFilterList(product.GetId(), newQuantity);
                 }
                 break;
             }
@@ -192,6 +195,7 @@ public class ProductsActivity extends AppCompatActivity {
         for (CommandDetail commandDetail: GlobalApp.Business.SelectedCommand.GetDetails()) {
             if(product.GetId() == commandDetail.GetProduct().GetId()){
                 newQuantity += commandDetail.GetQuantity();
+                SetQuantityInFilterList(product.GetId(), newQuantity);
             }
         }
 
@@ -216,6 +220,7 @@ public class ProductsActivity extends AppCompatActivity {
                 if (product.GetId() == commandDetail.GetProduct().GetId()) {
                     newQuantity = commandDetail.GetQuantity() + 1;
                     commandDetail.SetQuantity(newQuantity);
+                    SetQuantityInFilterList(product.GetId(), newQuantity);
                     isNewElement = false;
                     break;
                 }
@@ -223,11 +228,21 @@ public class ProductsActivity extends AppCompatActivity {
 
             if (isNewElement) {
                 CommandDetail commandDetail = new CommandDetail(product, newQuantity);
+                SetQuantityInFilterList(product.GetId(), newQuantity);
                 GlobalApp.Business.SelectedCommand.GetDetails().add(commandDetail);
             }
         }
 
       return newQuantity;
+    }
+
+    private void SetQuantityInFilterList (int productId, int quantity){
+
+        for (Product product: productsByType) {
+            if(product.GetId() == productId){
+                product.SetQuantity(quantity);
+            }
+        }
     }
 
 
