@@ -11,11 +11,11 @@ public class Database {
     public static class SQLServer {
 
         private static final String LOG = "DEBUG";
-        private static String ip = GlobalApp.Business.DbConfiguration.ServerName;
-        private static String port = "1433";
+        private static String server = GlobalApp.Business.DbConfiguration.ServerName;
+        private static String instance = GlobalApp.Business.DbConfiguration.Instance;
         private static String classs = "net.sourceforge.jtds.jdbc.Driver";
         private static String db = GlobalApp.Business.DbConfiguration.Database;
-        private static String un = GlobalApp.Business.DbConfiguration.User;
+        private static String user = GlobalApp.Business.DbConfiguration.User;
         private static String password = GlobalApp.Business.DbConfiguration.Password;
         private static String message = "";
 
@@ -28,9 +28,15 @@ public class Database {
 
             try {
                 Class.forName(classs);
-                ConnURL = "jdbc:jtds:sqlserver://" + ip + ":" + port + ";"
+
+               /* ConnURL = "jdbc:jtds:sqlserver://" + server + ";"
                         + "databaseName=" + db + ";user=" + un + ";password="
-                        + password + ";";
+                        + password + ";";*/
+
+              /*  ConnURL = "jdbc:jtds:sqlserver://KiwiTPVServer/KiwiTPv;instance=SQLExpress;user=sa;password=licuo2019"; */
+
+                ConnURL = "jdbc:jtds:sqlserver://" + server + ";instance=" + instance + ";databaseName=" + db + ";user=" + user + ";password="+password;
+
                 connection = DriverManager.getConnection(ConnURL);
 
             } catch (SQLException e) {

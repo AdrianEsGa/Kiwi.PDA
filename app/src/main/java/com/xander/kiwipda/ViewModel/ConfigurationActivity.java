@@ -32,6 +32,7 @@ public class ConfigurationActivity extends AppCompatActivity {
             PreferencesController preferencesController = new PreferencesController();
 
             EditText textServer = findViewById(R.id.TextServer);
+            EditText textInstance = findViewById(R.id.TextInstance);
             EditText textDatabase = findViewById(R.id.TextDatabase);
             EditText textUser = findViewById(R.id.TextUser);
             EditText textPassword = findViewById(R.id.TextPassword);
@@ -40,6 +41,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
                 GlobalApp.Business.DbConfiguration = new Preference();
                 GlobalApp.Business.DbConfiguration.ServerName = textServer.getText().toString();
+                GlobalApp.Business.DbConfiguration.Instance = textInstance.getText().toString();
                 GlobalApp.Business.DbConfiguration.Database = textDatabase.getText().toString();
                 GlobalApp.Business.DbConfiguration.User = textUser.getText().toString();
                 GlobalApp.Business.DbConfiguration.Password = textPassword.getText().toString();
@@ -62,11 +64,13 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     private void LoadConfiguration(){
         EditText textServer = findViewById(R.id.TextServer);
+        EditText textInstance = findViewById(R.id.TextInstance);
         EditText textDatabase = findViewById(R.id.TextDatabase);
         EditText textUser = findViewById(R.id.TextUser);
         EditText textPassword = findViewById(R.id.TextPassword);
 
         textServer.setText(GlobalApp.Business.DbConfiguration.ServerName);
+        textInstance.setText(GlobalApp.Business.DbConfiguration.Instance);
         textDatabase.setText(GlobalApp.Business.DbConfiguration.Database);
         textUser.setText(GlobalApp.Business.DbConfiguration.User);
         textPassword.setText(GlobalApp.Business.DbConfiguration.Password);

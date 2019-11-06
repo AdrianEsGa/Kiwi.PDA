@@ -11,6 +11,7 @@ public class PreferencesController {
     public static void SavePreferents(Context context, Preference preferences) {
         SharedPreferences.Editor editor = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
         editor.putString("servername",preferences.ServerName);
+        editor.putString("instance",preferences.Instance);
         editor.putString("database",  preferences.Database);
         editor.putString ("user",  preferences.User);
         editor.putString ("password",  preferences.Password);
@@ -21,11 +22,13 @@ public class PreferencesController {
         SharedPreferences prefs = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         if (prefs!=null) {
             preference.ServerName = prefs.getString("servername", "");
+            preference.Instance = prefs.getString("instance", "");
             preference.Database = prefs.getString("database", "");
             preference.User = prefs.getString("user", "");
             preference.Password = prefs.getString("password", "");
         }else {
             preference.ServerName = "";
+            preference.Instance = "";
             preference.Database = "";
             preference.User = "";
             preference.Password = "";

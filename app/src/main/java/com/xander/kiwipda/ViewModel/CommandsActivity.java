@@ -6,15 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xander.kiwipda.GlobalApp;
 import com.xander.kiwipda.Model.Entities.Command;
-import com.xander.kiwipda.Model.Entities.CommandDetail;
 import com.xander.kiwipda.Model.Entities.CommandStatus;
-import com.xander.kiwipda.Model.Entities.Product;
 import com.xander.kiwipda.Model.Repositories.CommandRepository;
 import com.xander.kiwipda.R;
 import com.xander.kiwipda.ViewModel.Adapters.CommandAdapter;
@@ -25,6 +22,7 @@ public class CommandsActivity extends AppCompatActivity {
 
     private ListView listViewCommands;
     private CommandRepository commandRepository = new CommandRepository();
+    private ArrayList<Command> commands;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +41,7 @@ public class CommandsActivity extends AppCompatActivity {
 
     private void LoadListViewCommands() {
 
-        ArrayList<Command> commands = commandRepository.GetByEmployeeAndTable(GlobalApp.Business.SelectedEmployee.GetId(), GlobalApp.Business.SelectedTable.GetId());
+        commands = commandRepository.GetByEmployeeAndTable(GlobalApp.Business.SelectedEmployee.GetId(), GlobalApp.Business.SelectedTable.GetId());
 
         for (Command command: commands) {
             command.SetImage(getResources().getDrawable(R.drawable.defaultcommand));
@@ -70,7 +68,10 @@ public class CommandsActivity extends AppCompatActivity {
     }
 
     public void btnNewCommandView_Click(View target) {
+        NewCommand();
+    }
 
+    private void NewCommand(){
         GlobalApp.Business.SelectedCommand  = new Command(GlobalApp.Business.SelectedEmployee.GetId(), GlobalApp.Business.SelectedTable.GetId());
         Intent myIntent = new Intent(this, ProductTypesActivity.class);
         myIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
